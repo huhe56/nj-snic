@@ -1,0 +1,128 @@
+top
+   scope org
+     enter local-disk-config-policy default
+         set descr ""
+         set flexflash-raid-reporting-state disable
+         set flexflash-state disable
+         set mode any-configuration
+         set policy-owner local
+         set protect yes
+     exit
+
+     enter boot-policy bp1 purpose operational
+         enter lan
+             enter path primary
+                 set vnic eth0
+             exit
+             set order 2
+         exit
+         enter storage
+             enter local
+                 enter local-any
+                     set order 1
+                 exit
+             exit
+             set order 1
+         exit
+         set boot-mode legacy
+         set descr ""
+         set enforce-vnic-name yes
+         set policy-owner local
+         set reboot-on-update yes
+     exit
+
+     enter disk-group-config-policy raid0policy
+         enter disk-group-qual
+             set drive-type ssd
+             set min-drive-size unspecified
+             set num-ded-hot-spares unspecified
+             set num-drives unspecified
+             set num-glob-hot-spares unspecified
+             set use-remaining-disks no
+         exit
+         enter virtual-drive-def
+             set access-policy unspecified
+             set drive-cache unspecified
+             set io-policy unspecified
+             set read-policy unspecified
+             set strip-size unspecified
+             set write-cache-policy unspecified
+         exit
+         set descr ""
+         set raid-level raid-0-striped
+     exit
+
+     enter service-profile sp2 instance
+         enter default-behavior vhba
+             set action none
+         exit
+         enter default-behavior vnic
+             set action none
+         exit
+         enter ext-static-ip
+             set addr 10.193.221.139
+             set default-gw 10.193.221.254
+             set subnet 255.255.255.0
+         exit
+         enter storage-profile-def
+             enter local-lun sp2lun
+                 set disk-policy-name raid0policy
+                 set expand-to-avail no
+                 set size 40000
+                 set volume-name sp2bootlun
+             exit
+         exit
+         enter vcon 1
+         enter vcon 2
+         enter vcon 3
+         enter vcon 4
+         enter vcon-assign ethernet eth0 any 2
+             set admin-vcon any
+             set order 2
+         exit
+         enter vnic eth0 fabric a
+             enter eth-if vlan10
+                 set default-net yes
+             exit
+             set adapter-policy ""
+             set fabric a
+             set identity dynamic-mac 00:25:B5:01:01:02
+             set mtu 1500
+             set nw-control-policy ""
+             set order 2
+             set pin-group ""
+             set qos-policy ""
+             set stats-policy defaultsc
+             set template-name ""
+             set vcon any
+         exit
+         power up
+         set bios-policy ""
+         set boot-policy bp1
+         set descr ""
+         set dynamic-vnic-conn-policy ""
+         set ext-mgmt-ip-pool-name ""
+         set ext-mgmt-ip-state static
+         set host-fw-policy ""
+         set ipmi-access-profile ""
+         set lan-connectivity-policy-name ""
+         set local-disk-policy default
+         set maint-policy ""
+         set mgmt-fw-policy ""
+         set identity dynamic-uuid 00000000-0000-0000-0000-897987010102
+         set identity wwnn-pool node-default
+         localize
+         set power-control-policy default
+         set remote-resolution yes
+         set san-connectivity-policy-name ""
+         set scrub-policy ""
+         set sol-policy default
+         set src-templ-name ""
+         set stats-policy default
+         set user-label ""
+         set vcon 1 selection all
+         set vcon 2 selection all
+         set vcon 3 selection all
+         set vcon 4 selection all
+         set vcon-policy ""
+     exit
