@@ -270,3 +270,14 @@ class Util(object):
                 time.sleep(interval)
         raise Exception("Failed to ssh to " + node_ip + " for " + probe_max_count + " times")
     
+    
+    @staticmethod
+    def run_text_step(ssh, file_text_step, interval=None):
+        step_list = Utils.read_file(file_text_step)            
+        for cmd in step_list:
+            cmd = cmd.strip()
+            if cmd:
+                ssh.send_expect_prompt(cmd)
+                if interval: 
+                    time.sleep(interval)
+                
