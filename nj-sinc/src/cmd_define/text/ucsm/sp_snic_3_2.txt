@@ -126,3 +126,5 @@ top
          set vcon 4 selection all
          set vcon-policy ""
      exit
+  exit
+commit-buffer
