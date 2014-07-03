@@ -32,8 +32,6 @@ if __name__ == '__main__':
         ssh.send_expect_prompt("scope download-task " + Define.IMAGE_LIST[i])
         ret = Util.probe_send_expect(ssh, "show", "Downloaded", 60, 10)
         if not ret: exit()    
-    
-    exit()
 
     ssh.send_expect_prompt("top")
     ssh.send_expect_prompt("scope firmware")
