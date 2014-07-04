@@ -272,11 +272,15 @@ class Util(object):
     
     
     @staticmethod
-    def run_text_step(ssh, file_text_step, interval=None):
+    def run_text_step(ssh, file_text_step, param=None, interval=None):
         step_list = Utils.read_file(file_text_step)            
         for cmd in step_list:
             cmd = cmd.strip()
             if cmd:
+                if param:
+                    for key, value in param.iteritems():
+                        cmd = cmd.replace(key, value)
+                #print cmd
                 ssh.send_expect_prompt(cmd)
                 if interval: 
                     time.sleep(interval)

@@ -1,0 +1,24 @@
+top
+   scope org
+     enter boot-policy tag_boot_policy purpose operational
+     	 enter storage
+             enter local
+                 enter local-any
+                     set order 1
+                 exit
+             exit
+             set order 1
+         exit
+         enter lan
+             enter path primary
+                 set vnic eth0
+             exit
+             set order 2
+         exit
+         set boot-mode legacy
+         set enforce-vnic-name yes
+         set policy-owner local
+         set reboot-on-update yes
+     exit
+exit
+commit-buffer
