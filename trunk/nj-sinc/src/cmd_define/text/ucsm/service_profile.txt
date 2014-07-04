@@ -1,0 +1,33 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name instance
+         enter ext-static-ip
+             set addr tag_mgmt_ip_address
+             set default-gw tag_mgmt_ip_gateway
+             set subnet tag_mgmt_ip_netmask
+         exit
+         enter storage-profile-def
+             enter local-lun tag_local_lun
+                 set disk-policy-name tag_disk_group_config_policy_name
+                 set expand-to-avail no
+                 set size tag_disk_size
+                 set volume-name tag_volumn_name
+             exit
+         exit
+         enter vnic tag_eth_name fabric tag_eth_fabric
+             enter eth-if tag_eth_vlan
+                 set default-net yes
+             exit
+             set fabric tag_eth_fabric
+             set identity dynamic-mac tag_mac_address
+         exit
+         power up
+         set boot-policy tag_boot_policy
+         set ext-mgmt-ip-state static
+         set local-disk-policy default
+         set identity dynamic-uuid tag_uuid
+         localize
+         set remote-resolution yes
+     exit
+  exit
+  commit-buffer

@@ -1,0 +1,23 @@
+top
+   scope org
+     enter disk-group-config-policy tag_disk_group_config_policy_name
+         enter disk-group-qual
+             set drive-type ssd
+             set min-drive-size unspecified
+             set num-ded-hot-spares unspecified
+             set num-drives unspecified
+             set num-glob-hot-spares unspecified
+             set use-remaining-disks no
+         exit
+         enter virtual-drive-def
+             set access-policy unspecified
+             set drive-cache unspecified
+             set io-policy unspecified
+             set read-policy unspecified
+             set strip-size unspecified
+             set write-cache-policy unspecified
+         exit
+         set raid-level tag_raid_level
+     exit
+exit
+commit-buffer

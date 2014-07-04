@@ -1,0 +1,31 @@
+top
+scope eth-server
+     scope fabric a
+         enter interface 1 1
+             enable
+         exit
+     exit
+     scope fabric b
+         enter interface 1 1
+             enable
+         exit
+     exit
+exit
+
+scope eth-uplink
+     enter vlan vlan10 10
+         set vlan-id 10
+     exit
+     scope fabric a
+         enter interface 1 32
+             enable
+         exit
+     exit
+     scope fabric b
+         enter interface 1 32
+             enable
+         exit
+     exit
+ exit
+ commit-buffer
+ 

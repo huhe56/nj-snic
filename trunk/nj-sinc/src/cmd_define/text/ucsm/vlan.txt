@@ -1,0 +1,6 @@
+top
+scope eth-uplink
+     enter vlan vlan10 10
+         set vlan-id 10
+     exit
+ exit
