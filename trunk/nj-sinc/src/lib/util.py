@@ -279,7 +279,8 @@ class Util(object):
             if cmd:
                 if param:
                     for key, value in param.iteritems():
-                        cmd = cmd.replace(key, value)
+                        if key.startswith('tag_'):
+                            cmd = cmd.replace(key, value)
                 #print cmd
                 ssh.send_expect_prompt(cmd)
                 if interval: 
