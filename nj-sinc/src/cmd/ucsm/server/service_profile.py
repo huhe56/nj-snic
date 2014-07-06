@@ -16,9 +16,13 @@ if __name__ == '__main__':
     
     param = sp_define.param
     
-    chassis_id      = str(param['chassis_id']).zfill(2)
-    cartridge_id    = str(param['cartridge_id']).zfill(2)
-    server_id       = str(param['server_id']).zfill(2)
+    chassis     = str(param['chassis_id'])
+    cartridge   = str(param['cartridge_id'])
+    server      = str(param['server_id'])
+    
+    chassis_id      = str(chassis).zfill(2)
+    cartridge_id    = str(cartridge).zfill(2)
+    server_id       = str(server).zfill(2)
     eth_id          = str(param['eth_pxe_name_index']).zfill(2)
     
     server_full_id_list = [chassis_id, cartridge_id, server_id]
@@ -27,7 +31,7 @@ if __name__ == '__main__':
     eth_full_id_list = [chassis_id, cartridge_id, server_id, eth_id]
     eth_full_id = ''.join(eth_full_id_list)
     
-    param['tag_service_profile_name'] = '-'.join(['sp', chassis_id, cartridge_id, server_id])
+    param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
     param['tag_local_lun'] = ''.join(['lun', server_full_id])
     param['tag_volumn_name'] = ''.join(['volumn', server_full_id])
     param['tag_mac_address'] = ':'.join([param['mac_prefix'], ':'.join(eth_full_id_list)])
