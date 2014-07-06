@@ -16,16 +16,19 @@ if __name__ == '__main__':
     
     param = sp_define.param
     
-    chassis_id      = str(param['chassis_id']).zfill(2)
-    cartridge_id    = str(param['cartridge_id']).zfill(2)
-    server_id       = str(param['server_id']).zfill(2)
+    chassis     = str(param['chassis_id'])
+    cartridge   = str(param['cartridge_id'])
+    server      = str(param['server_id'])
     
-    server_full_id_list = [chassis_id, cartridge_id, server_id]
-    server_full_id  = ''.join(server_full_id_list)
-    param['tag_service_profile_name'] = '-'.join(['sp', chassis_id, cartridge_id, server_id])
+    chassis_id      = str(chassis).zfill(2)
+    cartridge_id    = str(cartridge).zfill(2)
+    server_id       = str(server).zfill(2)
+    eth_id          = str(param['eth_pxe_name_index']).zfill(2)
+    
+    param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
     
     eth_id_number_list = range(2, 8)
-    eth_id_number_list.append(1790)
+    eth_id_number_list.insert(0, 1790)
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     for eth_id_number in eth_id_number_list: 
         print ("--------" + str(eth_id_number))
@@ -38,7 +41,7 @@ if __name__ == '__main__':
         param['tag_mac_address'] = ':'.join([param['mac_prefix'], ':'.join(eth_full_id_list)])
         param["tag_eth_name"] = ''.join([param["eth_pxe_name_prefix"], vlan_id])
         param["tag_eth_vlan"] = ''.join(["vlan", vlan_id])
-    
+        param['tag_eth_order'] = str(int(eth_id) + 1)
         if eth_id_number == 1790 or eth_id_number % 2 == 1:
             param["tag_eth_fabric"] = 'b'
         else:

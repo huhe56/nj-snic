@@ -1,9 +1,9 @@
 
 param = {
              "chassis_id":      1,
-             "cartridge_id":    4,
+             "cartridge_id":    3,
              "server_id":       2,
-             "tag_mgmt_ip_address": "10.193.221.136",
+             "tag_mgmt_ip_address": "10.193.221.138",
              "tag_disk_size": "20000",
              
              
@@ -19,6 +19,7 @@ param = {
              
              "tag_eth_vlan":    "vlan10",
              "tag_eth_fabric":  "a",
+             "tag_eth_order":   "1",
              
              "mac_prefix":  '00:25',
              "uuid_prefix": '00000000-0000-0000-2601-000000'

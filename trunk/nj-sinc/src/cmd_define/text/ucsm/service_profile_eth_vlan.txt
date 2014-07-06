@@ -5,6 +5,7 @@ top
              enter eth-if tag_eth_vlan
                  set default-net yes
              exit
+             set order tag_eth_order
              set identity dynamic-mac tag_mac_address
          exit
      exit

@@ -1,0 +1,7 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         associate server tag_server_full_id
+     exit
+  exit
+  commit-buffer

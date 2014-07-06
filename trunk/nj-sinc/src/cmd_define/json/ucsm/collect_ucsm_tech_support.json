@@ -10,7 +10,7 @@
 	{
 		"cmd": 		"show tech-support ucsm detail",
 		"expect": 	"workspace:.+tar",
-		"timeout": 	600,
+		"timeout": 	1800,
 		"return":	"true"
 	},
 	
