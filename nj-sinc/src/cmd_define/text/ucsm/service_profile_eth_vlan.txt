@@ -1,0 +1,12 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         enter vnic tag_eth_name fabric tag_eth_fabric
+             enter eth-if tag_eth_vlan
+                 set default-net yes
+             exit
+             set identity dynamic-mac tag_mac_address
+         exit
+     exit
+  exit
+  commit-buffer

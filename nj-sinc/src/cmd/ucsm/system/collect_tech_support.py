@@ -19,13 +19,6 @@ if __name__ == '__main__':
     
     cmd2 = "show tech-support chassis 1 all detail"
     
-    cmd4 = "show tech-support fex 2 detail"
-    cmd5 = "show tech-support fex 3 detail"
-    
-    cmd11 = "show tech-support server 1 detail"
-    cmd12 = "show tech-support server 2 detail"
-    cmd13 = "show tech-support server 3 detail"
-    cmd14 = "show tech-support server 4 detail"
     
     
     for cmd in [cmd2]:
