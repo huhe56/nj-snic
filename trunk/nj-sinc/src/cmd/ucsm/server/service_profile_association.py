@@ -4,7 +4,6 @@ Created on Aug 26, 2014
 @author: huhe
 '''
 
-import pprint
 from main.define import Define
 from lib.util import Util
 from lib.ucsm import UCSM

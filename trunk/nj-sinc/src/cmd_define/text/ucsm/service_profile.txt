@@ -1,11 +1,6 @@
 top
    scope org
      enter service-profile tag_service_profile_name instance
-         enter ext-static-ip
-             set addr tag_mgmt_ip_address
-             set default-gw tag_mgmt_ip_gateway
-             set subnet tag_mgmt_ip_netmask
-         exit
          enter storage-profile-def
              enter local-lun tag_local_lun
                  set disk-policy-name tag_disk_group_config_policy_name
@@ -24,7 +19,8 @@ top
          exit
          power up
          set boot-policy tag_boot_policy
-         set ext-mgmt-ip-state static
+         set ext-mgmt-ip-state pooled
+         set ext-mgmt-ip-pool-name tag_kvm_ip_pool_name
          set local-disk-policy default
          set identity dynamic-uuid tag_uuid
          localize
