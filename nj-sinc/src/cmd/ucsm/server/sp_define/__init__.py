@@ -1,9 +1,9 @@
 
 param = {
              "chassis_id":      1,
-             "cartridge_id":    3,
-             "server_id":       2,
-             "tag_disk_size": "25000",
+             "cartridge_id":    5,
+             "server_id":       1,
+             "tag_disk_size": "16000",
              
              "eth_pxe_name_prefix": "eth",
              "eth_pxe_name_index":   0,
