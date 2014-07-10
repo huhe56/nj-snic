@@ -144,7 +144,7 @@ class Util(object):
         step_return = None
         if "timeout" in step.keys(): step_timeout = int(step["timeout"])
         if "return"  in step.keys(): step_return  = step["return"]
-        
+        Util._logger.debug("timeout: " + str(step_timeout))
         if expect_list:
             Util._logger.debug(expect_list)
             ssh.send(cmd)

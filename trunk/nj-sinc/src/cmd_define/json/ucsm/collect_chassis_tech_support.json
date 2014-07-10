@@ -1,4 +1,4 @@
-[
+[	
 	{
 		"cmd": 	"top"
 	},
@@ -10,7 +10,7 @@
 	{
 		"cmd": 		"show tech-support chassis 1 all detail",
 		"expect": 	"workspace:.+tar",
-		"timeout": 	600,
+		"timeout": 	3600,
 		"return":	"true"
 	},
 	
