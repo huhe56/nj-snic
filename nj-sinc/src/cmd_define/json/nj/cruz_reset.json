@@ -1,0 +1,12 @@
+[
+	{
+		"cmd":	""
+	},
+	{
+		"cmd":		"mreset",
+		"expect": 	"Loading snic drivers"
+	},
+	{
+		"cmd":	""
+	}
+]

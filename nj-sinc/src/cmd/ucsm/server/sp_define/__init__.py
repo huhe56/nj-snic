@@ -12,24 +12,24 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 20000, 'raid_level': 0},
-                  2:    {'disk_size': 16000, 'raid_level': 0},
+                  1:    {'disk_size': 22000, 'raid_level': 0},
+                  2:    {'disk_size': 22000, 'raid_level': 0},
                   },
               4: {
-                  1:    {'disk_size': 25000, 'raid_level': 0, 'all_eth': True},
-                  2:    {'disk_size': 18000, 'raid_level': 0, 'all_eth': True},
+                  1:    {'disk_size': 22000, 'raid_level': 0, 'all_eth': True},
+                  2:    {'disk_size': 22000, 'raid_level': 0, 'all_eth': True},
                   },
-              5: {
-                  1:    {'disk_size': 60000, 'raid_level': 0},
-                  2:    {'disk_size': 30000, 'raid_level': 0},
-                  }
+              #5: {
+              #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
+              #    2:    {'disk_size': 18000, 'raid_level': 0, 'all_eth': True},
+              #    }
               }
           }
 
 param = {
              "chassis_id":      1,
-             "cartridge_id":    5,
-             "server_id":       2,
+             "cartridge_id":    3,
+             "server_id":       1,
              "tag_disk_size": "18000",
              
              
@@ -178,6 +178,16 @@ def delete_service_profile(ucsm_ssh, param):
     
     param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_deletion.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def power_cycle_service_profile(ucsm_ssh, param):
+    chassis     = str(param['chassis_id'])
+    cartridge   = str(param['cartridge_id'])
+    server      = str(param['server_id'])
+    
+    param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_power_cycle.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     

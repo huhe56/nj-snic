@@ -32,6 +32,7 @@ if __name__ == '__main__':
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
+                param['tag_eth_vlan']   = 'vlan10'
                 
                 param['tag_disk_size']  = disk_size
                 param['tag_disk_group_config_policy_name'] = disk_policy
@@ -39,10 +40,10 @@ if __name__ == '__main__':
                 sp_define.create_service_profile(ucsm_ssh, param)
                 
                 if all_eth:
-                    sp_define.create_eth_if_in_service_profile(ucsm_ssh, param)
+                    sp_define.create_eth_if_in_service_profile(ucsm_ssh, param) 
                     
                 sp_define.associate_service_profile(ucsm_ssh, param)
-                time.sleep(30)
+                time.sleep(60)
                 
     ucsm.exit()
     

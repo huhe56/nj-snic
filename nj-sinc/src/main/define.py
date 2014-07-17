@@ -11,8 +11,8 @@ class Define():
     classdocs
     '''
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 83
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140708-183211-rev181101-83"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 89
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140712-232707-rev181847-89"
     
     NODE_DEFAULT_USERNAME   = 'huhe'
     NODE_USERNAME_ROOT      = 'root'
@@ -29,6 +29,7 @@ class Define():
     PATH_SNIC_JSON         = PATH_SNIC_CMD_DEFINE + "json/"
     PATH_SNIC_JSON_LINUX   = PATH_SNIC_JSON + "linux/"
     PATH_SNIC_JSON_UCSM    = PATH_SNIC_JSON + "ucsm/"
+    PATH_SNIC_JSON_NJ      = PATH_SNIC_JSON + "nj/"
     
     PATH_SNIC_TEXT         = PATH_SNIC_CMD_DEFINE + "text/"
     PATH_SNIC_TEXT_UCSM    = PATH_SNIC_TEXT + "ucsm/"

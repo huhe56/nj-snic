@@ -4,7 +4,6 @@ Created on Aug 26, 2014
 @author: huhe
 '''
 
-import time
 
 from main.define import Define
 from lib.ucsm import UCSM

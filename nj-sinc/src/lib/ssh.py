@@ -123,5 +123,7 @@ class SSH(object):
         return self._session.match
     
     
+    def send_control(self, char):
+        self._session.sendcontrol(char)
         
             

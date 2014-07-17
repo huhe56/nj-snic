@@ -16,9 +16,9 @@ top
              set order 2
          exit
          set boot-mode legacy
-         set enforce-vnic-name yes
+         set enforce-vnic-name no
          set policy-owner local
-         set reboot-on-update yes
+         set reboot-on-update no
      exit
 exit
 commit-buffer

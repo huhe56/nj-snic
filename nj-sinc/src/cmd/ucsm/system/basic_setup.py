@@ -26,7 +26,6 @@ if __name__ == '__main__':
     vlan_id_list = range(122, 128)
     vlan_id_list.append(2000)
     
-    ucsm = UCSM(Define.UCSM_HOSTNAME);
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "vlan.txt"  
     
     for vlan_id in vlan_id_list: 

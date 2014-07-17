@@ -4,7 +4,6 @@ Created on Aug 26, 2014
 @author: huhe
 '''
 
-import time
 
 from main.define import Define
 from lib.ucsm import UCSM
@@ -20,13 +19,12 @@ if __name__ == '__main__':
     
     for chassis_id, chassis in sp_define.config.iteritems():
         for cartridge_id, cartridge in chassis.iteritems():
-            for server_id, server in cartridge.iteritems():
+            for server_id, server in cartridge.iteritems():    
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
-                sp_define.associate_service_profile(ucsm_ssh, param)
-                time.sleep(60)
-                
+                sp_define.power_cycle_service_profile(ucsm_ssh, param)
+                                
     ucsm.exit()
     
 
