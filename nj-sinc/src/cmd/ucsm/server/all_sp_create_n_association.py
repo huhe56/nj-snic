@@ -43,7 +43,7 @@ if __name__ == '__main__':
                     sp_define.create_eth_if_in_service_profile(ucsm_ssh, param) 
                     
                 sp_define.associate_service_profile(ucsm_ssh, param)
-                time.sleep(60)
+                time.sleep(10)
                 
     ucsm.exit()
     
