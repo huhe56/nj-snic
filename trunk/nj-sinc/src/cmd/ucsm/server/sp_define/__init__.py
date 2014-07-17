@@ -12,12 +12,12 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 22000, 'raid_level': 0},
-                  2:    {'disk_size': 22000, 'raid_level': 0},
+                  1:    {'disk_size': 20000, 'raid_level': 1},
+                  2:    {'disk_size': 20000, 'raid_level': 1},
                   },
               4: {
-                  1:    {'disk_size': 22000, 'raid_level': 0, 'all_eth': True},
-                  2:    {'disk_size': 22000, 'raid_level': 0, 'all_eth': True},
+                  1:    {'disk_size': 20000, 'raid_level': 1, 'all_eth': True},
+                  2:    {'disk_size': 20000, 'raid_level': 1, 'all_eth': True},
                   },
               #5: {
               #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
@@ -27,6 +27,8 @@ config = {
           }
 
 param = {
+             "tag_boot_policy": "bp-disk-pxe",
+             
              "chassis_id":      1,
              "cartridge_id":    3,
              "server_id":       1,
@@ -49,7 +51,7 @@ param = {
              "tag_kvm_ip_gateway":  "10.193.221.254",
              "tag_kvm_ip_netmask":  "255.255.255.0",
 
-             "tag_boot_policy": "bp-disk-pxe",
+             
              
              "tag_eth_vlan":    "vlan10",
              "tag_eth_fabric":  "a",
@@ -192,7 +194,12 @@ def power_cycle_service_profile(ucsm_ssh, param):
     
     
     
-    
+def change_boot_policy_order(ucsm_ssh, param, order_storage_local_any=1, order_lan=2):
+    param['tag_boot_storage_local_any_order'] = str(order_storage_local_any)
+    param['tag_boot_lan_order'] = str(order_lan)
+
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_change.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
     

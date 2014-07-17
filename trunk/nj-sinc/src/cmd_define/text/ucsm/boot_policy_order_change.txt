@@ -4,20 +4,14 @@ top
      	 enter storage
              enter local
                  enter local-any
-                     set order 1
+                     set order tag_boot_storage_local_any_order
                  exit
              exit
-             set order 1
+             set order tag_boot_storage_local_any_order
          exit
          enter lan
-             enter path primary
-                 set vnic eth0
-             exit
-             set order 2
+             set order tag_boot_lan_order
          exit
-         set boot-mode legacy
-         set enforce-vnic-name no
-         set policy-owner local
          set reboot-on-update no
      exit
 exit
