@@ -183,12 +183,15 @@ def delete_service_profile(ucsm_ssh, param):
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
-def power_cycle_service_profile(ucsm_ssh, param):
+def power_cycle_service_profile(ucsm_ssh, param, wait=False):
     chassis     = str(param['chassis_id'])
     cartridge   = str(param['cartridge_id'])
     server      = str(param['server_id'])
     
     param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
+    param['tag_power_cycle_timing'] = 'immediate'
+    if wait:
+        param['tag_power_cycle_timing'] = 'wait'
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_power_cycle.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     

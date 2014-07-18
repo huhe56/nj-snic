@@ -1,0 +1,22 @@
+[
+	{
+		"cmd":		"storelibtest",
+		"expect":	"Please enter choice"
+	},
+	{
+		"cmd":		"6",
+		"expect":	"Please enter choice"
+	},
+	{
+		"cmd":		"2",
+		"expect":	"Press ENTER to continue"
+	},
+	{
+		"cmd":		"",
+		"expect":	"Please enter choice"
+	},
+	{
+		"cmd":		"0",
+		"expect":	"Press ENTER to continue"
+	}
+]
