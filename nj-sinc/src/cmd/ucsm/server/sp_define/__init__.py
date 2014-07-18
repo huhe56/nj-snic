@@ -12,12 +12,12 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 20000, 'raid_level': 1},
-                  2:    {'disk_size': 20000, 'raid_level': 1},
+                  1:    {'disk_size': 22000, 'raid_level': 1},
+                  2:    {'disk_size': 22000, 'raid_level': 1},
                   },
               4: {
-                  1:    {'disk_size': 20000, 'raid_level': 1, 'all_eth': True},
-                  2:    {'disk_size': 20000, 'raid_level': 1, 'all_eth': True},
+                  1:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
+                  2:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
                   },
               #5: {
               #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
