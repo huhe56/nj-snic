@@ -1,7 +1,7 @@
 top
    scope org
      enter service-profile tag_service_profile_name
-         cycle cycle-immediate
+         cycle cycle-wait
      exit
   exit
   commit-buffer

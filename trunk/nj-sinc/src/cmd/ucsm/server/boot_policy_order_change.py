@@ -13,7 +13,7 @@ if __name__ == '__main__':
     
     order_lan = 2
     
-    order_storage_local_any = 2
+    order_storage_local_any = 0
     if order_lan == 1:
         order_storage_local_any = 2
     elif order_lan == 2:
