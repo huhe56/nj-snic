@@ -148,6 +148,7 @@ class Util(object):
         if expect_list:
             Util._logger.debug(expect_list)
             ssh.send(cmd)
+            time.sleep(1)
             if step_timeout:
                 if step_return:
                     ssh.expect(expect_list, step_timeout)
