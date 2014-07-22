@@ -1,11 +1,11 @@
 [
 	{
 		"cmd":		"storelibtest",
-		"expect":	"Please enter choice"
+		"expect":	"Please enter choice : "
 	},
 	{
 		"cmd":		"6",
-		"expect":	"Please enter choice"
+		"expect":	"Please enter choice :"
 	},
 	{
 		"cmd":		"2",
@@ -13,7 +13,7 @@
 	},
 	{
 		"cmd":		"",
-		"expect":	"Please enter choice"
+		"expect":	"Please enter choice :"
 	},
 	{
 		"cmd":		"4",
@@ -21,7 +21,7 @@
 	},
 	{
 		"cmd":		"",
-		"expect":	"Please enter choice"
+		"expect":	"Please enter choice :"
 	},
 	{
 		"cmd":		"2",
@@ -29,7 +29,7 @@
 	},
 	{
 		"cmd":		"",
-		"expect":	"Please enter choice"
+		"expect":	"Please enter choice :"
 	},
 	{
 		"cmd":		"0",

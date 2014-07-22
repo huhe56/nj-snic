@@ -60,6 +60,30 @@ class Define():
     UCSM_HOSTNAME   = "10.193.221.130"
     UCSM_HOSTNAME_B = "10.193.221.132"
     
+
+
+    SNIC_STATS_ERROR_LIST = [
+                             'IOs Failed',
+                             'IOs Not Found',
+                             'Memory Alloc Failures',
+                             'REQs Null',
+                             'SCSI Cmd Pointers Null',
+                             'Aborts',
+                             'Aborts Fail',
+                             'Aborts Timeout',
+                             'FW Out Of Resource Errs',
+                             'FW IO Errors',
+                             'FW SCSI Errors',
+                             'Data Count Mismatch',
+                             'IOs w/ Timeout Status',
+                             'IOs w/ Aborted Status',
+                             'IOs w/ SGL Invalid Stat',
+                             'WQ Desc Alloc Fail',
+                             'Queue Full',
+                             'Target Not Ready',
+                             ]
+    
+    
     UCSM_BLADE_SERVER_LIST  = { 1: {
                                     1: "Blade1_node01", 
                                     2: "Blade2_node02", 

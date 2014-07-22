@@ -23,4 +23,7 @@ class Cruz:
         
         
     def run_cmd_step(self, file_json_step):
-        Util.run_step_list(self._ssh, file_json_step)
+        try:
+            Util.run_step_list(self._ssh, file_json_step)
+        except:
+            self.exit()

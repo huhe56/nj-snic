@@ -32,7 +32,7 @@ class SSH(object):
             _session.logfile_read = sys.stdout
         else:
             #Utils.append_file(Define.PATH_USNIC_LOG_FILE_ALL, Define.PATH_USNIC_LOG_FILE)
-            self._log_file = Define.PATH_USNIC_LOG + hostname + "_" + Utils.get_current_time_string()
+            self._log_file = Define.PATH_SNIC_LOG + hostname + "_" + Utils.get_current_time_string()
             self._logger.info(self._log_file)
             _session.logfile_read = file(self._log_file, "w")
         ret = _session.expect([pexpect.TIMEOUT, pexpect.EOF, Define.PATTERN_SSH_NEW_KEY, Define.PATTERN_PROMPT, Define.PATTERN_PASSWORD])
