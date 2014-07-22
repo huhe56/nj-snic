@@ -12,12 +12,12 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 22000, 'raid_level': 1},
-                  2:    {'disk_size': 22000, 'raid_level': 1},
+                  1:    {'disk_size': 20000, 'raid_level': 1},
+                  2:    {'disk_size': 21000, 'raid_level': 1},
                   },
               4: {
                   1:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
-                  2:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
+                  2:    {'disk_size': 23000, 'raid_level': 1, 'all_eth': True},
                   },
               #5: {
               #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
@@ -71,7 +71,7 @@ param = {
 
 
 def create_boot_policy(ucsm_ssh, param):
-    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy.txt"   
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_disk_pxe.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
@@ -205,4 +205,15 @@ def change_boot_policy_order(ucsm_ssh, param, order_storage_local_any=1, order_l
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
-    
+def get_all_host_ip():
+    host_ip_prefix = '20.200.10.'
+    host_ip_list = []
+    for chassis_id, chassis in config.iteritems():
+        for cartridge_id, cartridge in chassis.iteritems():
+            for server_id, server in cartridge.iteritems():    
+                host_ip_list.append(host_ip_prefix + str(chassis_id) + str(cartridge_id) + str(server_id))
+    return host_ip_list
+
+
+
+                

@@ -81,6 +81,7 @@ class Util(object):
     cmd
     expect
     timeout
+    append_return: send return key after cmd
     return:     save the matched string for future step to use
     for:        loop the cmd multiple times
     probe:      probe until pattern is expected

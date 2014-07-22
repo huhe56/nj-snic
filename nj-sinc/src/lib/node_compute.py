@@ -106,8 +106,9 @@ class NodeCompute(RedHat):
             self._logger.error('some keys are not found')             
                         
     
-        
-    
+    def setup_medusa(self):
+        file_json_step = Define.PATH_SNIC_JSON_LINUX + "medusa_setup.json"
+        Util.run_step_list(self._ssh, file_json_step)
             
     
     

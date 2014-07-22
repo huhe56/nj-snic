@@ -25,6 +25,7 @@ if __name__ == '__main__':
     '''
     vlan_id_list = range(122, 128)
     vlan_id_list.append(2000)
+    vlan_id_list.append(113)
     
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "vlan.txt"  
     
