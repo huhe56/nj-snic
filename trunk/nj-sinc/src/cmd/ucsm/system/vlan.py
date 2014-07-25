@@ -16,6 +16,7 @@ if __name__ == '__main__':
     eth1: medusa vlan2000
     '''
     vlan_id_list = range(122, 128)
+    vlan_id_list.append(113)
     vlan_id_list.append(2000)
     
     ucsm = UCSM(Define.UCSM_HOSTNAME);

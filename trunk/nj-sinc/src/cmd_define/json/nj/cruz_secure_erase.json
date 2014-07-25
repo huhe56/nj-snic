@@ -16,7 +16,7 @@
 		"expect":	"Enter your choice--->"
 	},
 	{
-		"cmd":		"2",
+		"cmd":		"1",
 		"expect":	"Press ENTER to continue"
 	},
 	{

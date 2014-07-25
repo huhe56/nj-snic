@@ -12,12 +12,12 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 20000, 'raid_level': 1},
-                  2:    {'disk_size': 21000, 'raid_level': 1},
+                  1:    {'disk_size': 22000, 'raid_level': 1},
+                  2:    {'disk_size': 22000, 'raid_level': 1},
                   },
               4: {
                   1:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
-                  2:    {'disk_size': 23000, 'raid_level': 1, 'all_eth': True},
+                  2:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
                   },
               #5: {
               #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
@@ -126,19 +126,24 @@ def create_eth_if_in_service_profile(ucsm_ssh, param):
     
     param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
     
-    eth_id_number_list = range(2, 8)
-    eth_id_number_list.insert(0, 1880)
+    eth_id_number_list = range(2, 7)
+    eth_id_number_list.insert(0, 113)
+    eth_id_number_list.insert(0, 2000)
     for eth_id_number in eth_id_number_list: 
         eth_id = str(eth_id_number).zfill(2)
-        if eth_id_number  == 1880:
+        if eth_id_number  == 113:
             eth_id = '01'
+        elif eth_id_number  == 2000:
+            eth_id = '07'
         eth_full_id_list = [chassis_id, cartridge_id, server_id, eth_id]
         vlan_id = str(120 + eth_id_number)
+        if eth_id_number  == 113 or eth_id_number  == 2000:
+            vlan_id = str(eth_id_number)
         param['tag_mac_address'] = ':'.join([param['mac_prefix'], ':'.join(eth_full_id_list)])
         param["tag_eth_name"] = ''.join([param["eth_pxe_name_prefix"], vlan_id])
         param["tag_eth_vlan"] = ''.join(["vlan", vlan_id])
         param['tag_eth_order'] = str(int(eth_id) + 1)
-        if eth_id_number == 1880 or eth_id_number % 2 == 1:
+        if eth_id_number == 2000 or eth_id_number % 2 == 1:
             param["tag_eth_fabric"] = 'b'
         else:
             param["tag_eth_fabric"] = 'a'

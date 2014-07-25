@@ -32,11 +32,11 @@ if __name__ == '__main__':
         ssh.send_expect_prompt("scope download-task " + Define.IMAGE_LIST[i])
         ret = Util.probe_send_expect(ssh, "show", "Downloaded", 60, 10)
         if not ret: exit()    
-
+    
     ssh.send_expect_prompt("top")
     ssh.send_expect_prompt("scope firmware")
     ssh.send_expect_prompt("scope auto-install")
-    ssh.send("install infra infra-vers 3.0(100." + str(Define.UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ")A")
+    ssh.send("install infra infra-vers 2.5(0." + str(Define.UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ")A")
     ssh.expect("yes\/no\):")
     ssh.send_expect_prompt("yes")
     ssh.exit()

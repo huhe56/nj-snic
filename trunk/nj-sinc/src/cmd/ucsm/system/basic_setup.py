@@ -23,7 +23,7 @@ if __name__ == '__main__':
     eth0: pxe    vlan10
     eth1: medusa vlan2000
     '''
-    vlan_id_list = range(122, 128)
+    vlan_id_list = range(122, 127)
     vlan_id_list.append(2000)
     vlan_id_list.append(113)
     
