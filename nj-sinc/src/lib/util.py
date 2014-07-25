@@ -107,7 +107,7 @@ class Util(object):
                     Util.run_step(ssh, step_cmd_i, step, ret)
                     time.sleep(5)
             else:
-                Util._logger.debug(step_cmd)
+                #Util._logger.debug(step_cmd)
                 ret = Util.run_step(ssh, step_cmd, step, ret)
                     
                     
@@ -125,7 +125,7 @@ class Util(object):
                 cmd_item = eval(cmd_item[1:])
             if cmd_str : cmd_str = cmd_str + " " + cmd_item
             else: cmd_str = cmd_item
-        Util._logger.info(cmd_str)
+        #Util._logger.info(cmd_str)
         
         if step_probe:
             while True:
@@ -145,9 +145,9 @@ class Util(object):
         step_return = None
         if "timeout" in step.keys(): step_timeout = int(step["timeout"])
         if "return"  in step.keys(): step_return  = step["return"]
-        Util._logger.debug("timeout: " + str(step_timeout))
+        #Util._logger.debug("timeout: " + str(step_timeout))
         if expect_list:
-            Util._logger.debug(expect_list)
+            #Util._logger.debug(expect_list)
             ssh.send(cmd)
             time.sleep(1)
             if step_timeout:
@@ -222,7 +222,7 @@ class Util(object):
         ssh.send(cmd)
         ssh.expect("workspace:.+tar", 600)
         match_str = ssh.get_match_object().group()
-        Util._logger.debug("match string: " + match_str)
+        #Util._logger.debug("match string: " + match_str)
         cmd_str = "copy " + match_str + " " + Define.URL_UCSM_CDETS_TECH_SUPPORT
         ssh.send(cmd_str)
         ssh.expect("password")

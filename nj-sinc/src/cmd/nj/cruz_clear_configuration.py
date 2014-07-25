@@ -21,15 +21,18 @@ if __name__ == '__main__':
         Define.PHYSICAL_DRIVE_ID = str(drive_id)
         file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_secure_erase.json"
         cruz.run_cmd_step(file_json_step)
-    time.sleep(60)
+    #time.sleep(2400)
     
+    '''
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_reset.json"
     cruz.run_cmd_step(file_json_step)
     time.sleep(60)
     
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_show_configuration.json"
     cruz.run_cmd_step(file_json_step)
+    '''
     cruz.exit()
+    
     
     
         

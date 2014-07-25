@@ -11,8 +11,8 @@ class Define():
     classdocs
     '''
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 89
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140712-232707-rev181847-89"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 2
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140722-204639-rev183038-2"
     
     NODE_DEFAULT_USERNAME   = 'huhe'
     NODE_USERNAME_ROOT      = 'root'
@@ -45,7 +45,7 @@ class Define():
     DEVICE_DEFAULT_PASSWORD = 'passsword'
     
     UCSM_DEFAULT_USERNAME   = 'admin'
-    UCSM_DEFAULT_PASSWORD   = 'Nbv!2345'
+    UCSM_DEFAULT_PASSWORD   = 'nbv12345'
 
     TIMEOUT_SSH         = 10
     PATTERN_SSH_NEW_KEY = '(?i)are you sure you want to continue connecting'
@@ -104,8 +104,8 @@ class Define():
     URL_IMAGE_BUILD_ROOT = "http://savbu-swucs-bld3.cisco.com/new_jersey-builds/"
     URL_IMAGE_LATEST_BUILD_ROOT = URL_IMAGE_BUILD_ROOT + UCSM_BUNDLE_LATEST_BUILD_REVISION + "/Images." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + "/"
     IMAGE_LIST = [
-                  "ucs-k9-bundle-infra.3.0.100." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.gbin",
-                  "ucs-k9-bundle-m-series.3.0.100." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".M.gbin"
+                  "ucs-k9-bundle-infra.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.gbin",
+                  "ucs-k9-bundle-m-series.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".M.gbin"
                   ]
     URL_IMAGE_LIST = [URL_IMAGE_LATEST_BUILD_ROOT + image for image in IMAGE_LIST]
     
