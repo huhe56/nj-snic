@@ -15,7 +15,7 @@ top
              exit
              set order 2
          exit
-         set boot-mode legacy
+         set boot-mode tag_boot_mode
          set enforce-vnic-name no
          set policy-owner local
          set reboot-on-update no

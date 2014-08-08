@@ -23,6 +23,10 @@ if __name__ == '__main__':
             for server_id, server in cartridge.iteritems():
                 disk_size   = str(server['disk_size'])
                 raid_level  = server['raid_level']
+                
+                boot_policy = server['boot_policy']
+                boot_policy = 'disk-pxe-' + boot_policy
+                    
                 eth_cnt     = 1
                 if 'eth_cnt' in server.keys():
                     eth_cnt = server['eth_cnt']
@@ -37,6 +41,7 @@ if __name__ == '__main__':
                 param['tag_eth_order']   = '1'
                 param['tag_disk_size']  = disk_size
                 param['tag_disk_group_config_policy_name'] = disk_policy
+                param['tag_boot_policy'] = boot_policy
                 
                 sp_define.create_service_profile(ucsm_ssh, param)
                 
