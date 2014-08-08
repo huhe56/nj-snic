@@ -11,9 +11,13 @@ class Define():
     classdocs
     '''
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 2
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140722-204639-rev183038-2"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 20
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140806-042248-rev184822-20"
     
+    UCSM_HOSTNAME   = "10.193.221.130"
+    UCSM_HOSTNAME_B = "10.193.221.132"
+    
+    NODE_HEAD_NAME          = "10.193.221.245"
     NODE_DEFAULT_USERNAME   = 'huhe'
     NODE_USERNAME_ROOT      = 'root'
     NODE_DEFAULT_PASSWORD   = 'nbv12345'
@@ -56,12 +60,6 @@ class Define():
     
     PATTERN_NEW_LINE    = "\r\n"
 
-    NODE_HEAD_NAME  = "10.193.221.245"
-    UCSM_HOSTNAME   = "10.193.221.130"
-    UCSM_HOSTNAME_B = "10.193.221.132"
-    
-
-
     SNIC_STATS_ERROR_LIST = [
                              'IOs Failed',
                              'IOs Not Found',
@@ -101,7 +99,7 @@ class Define():
                                }
     
     
-    URL_IMAGE_BUILD_ROOT = "http://savbu-swucs-bld3.cisco.com/new_jersey-builds/"
+    URL_IMAGE_BUILD_ROOT = "http://savbu-swucs-bld3.cisco.com/elcapitan_ms-builds/"
     URL_IMAGE_LATEST_BUILD_ROOT = URL_IMAGE_BUILD_ROOT + UCSM_BUNDLE_LATEST_BUILD_REVISION + "/Images." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + "/"
     IMAGE_LIST = [
                   "ucs-k9-bundle-infra.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.gbin",

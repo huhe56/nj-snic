@@ -14,10 +14,12 @@ from lib.ucsm import UCSM
 
 if __name__ == '__main__':
     
+    download = False
     
-    head_node = NodeHead(Define.NODE_HEAD_NAME, "huhe")
-    file_json_step = Define.PATH_SNIC_JSON_LINUX + "wget_ucsm_firmware.json"   
-    Util.run_step_list(head_node.get_ssh(), file_json_step)
+    if download:
+        head_node = NodeHead(Define.NODE_HEAD_NAME, "huhe")
+        file_json_step = Define.PATH_SNIC_JSON_LINUX + "wget_ucsm_firmware.json"   
+        Util.run_step_list(head_node.get_ssh(), file_json_step)
     
     
     ucsm = UCSM(Define.UCSM_HOSTNAME);

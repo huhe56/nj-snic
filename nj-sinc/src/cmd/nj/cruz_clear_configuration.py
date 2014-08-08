@@ -8,12 +8,13 @@ import time
 from main.define import Define
 from lib.cruz import Cruz
 
-PHYSICAL_DRIVE_ID_LIST = [8, 9]
+PHYSICAL_DRIVE_ID_LIST = [8, 9, 10, 11]
 
 
 if __name__ == '__main__':
     
     cruz = Cruz()
+    
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_clear_configuration.json"
     cruz.run_cmd_step(file_json_step)
     
@@ -21,16 +22,16 @@ if __name__ == '__main__':
         Define.PHYSICAL_DRIVE_ID = str(drive_id)
         file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_secure_erase.json"
         cruz.run_cmd_step(file_json_step)
-    #time.sleep(2400)
+    time.sleep(600)
     
-    '''
-    file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_reset.json"
-    cruz.run_cmd_step(file_json_step)
-    time.sleep(60)
-    
+    cruz.wait_for_erase_complete(PHYSICAL_DRIVE_ID_LIST)
+        
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_show_configuration.json"
     cruz.run_cmd_step(file_json_step)
-    '''
+    
+    file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_reset.json"
+    cruz.run_cmd_step(file_json_step)
+        
     cruz.exit()
     
     
