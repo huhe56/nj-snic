@@ -12,12 +12,12 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 20000, 'raid_level': 1},
-                  2:    {'disk_size': 20000, 'raid_level': 1, 'eth_cnt': 2},
+                  1:    {'disk_size': 20000, 'raid_level': 0, 'boot_policy': 'uefi'},
+                  2:    {'disk_size': 20000, 'raid_level': 0, 'boot_policy': 'uefi', 'eth_cnt': 2},
                   },
               4: {
-                  1:    {'disk_size': 20000, 'raid_level': 1, 'eth_cnt': 4},
-                  2:    {'disk_size': 20000, 'raid_level': 1, 'eth_cnt': 4},
+                  1:    {'disk_size': 20000, 'raid_level': 0, 'boot_policy': 'uefi', 'eth_cnt': 4},
+                  2:    {'disk_size': 20000, 'raid_level': 0, 'boot_policy': 'uefi', 'eth_cnt': 4},
                   },
               #5: {
               #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
@@ -27,7 +27,8 @@ config = {
           }
 
 param = {
-             "tag_boot_policy": "bp-disk-pxe",
+             "tag_boot_policy": "disk-pxe-uefi",
+             "tag_boot_mode":   "legacy",
              
              "chassis_id":      1,
              "cartridge_id":    4,
@@ -73,9 +74,17 @@ param = {
 
 
 def create_boot_policy(ucsm_ssh, param):
+    param['tag_boot_policy'] = 'disk-pxe-legacy'
+    param['tag_boot_mode']   = 'legacy'
+    
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_disk_pxe.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
+    param['tag_boot_policy'] = 'disk-pxe-uefi'
+    param['tag_boot_mode']   = 'uefi'
+    
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_disk_pxe.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
 def create_kvm_console_ip_pool(ucsm_ssh, param):
