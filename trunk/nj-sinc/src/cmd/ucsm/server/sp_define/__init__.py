@@ -12,12 +12,12 @@ raid_level_disk_group_config_policy_dict = {
 config = {
           1: {
               3: {
-                  1:    {'disk_size': 22000, 'raid_level': 1},
-                  2:    {'disk_size': 22000, 'raid_level': 1},
+                  1:    {'disk_size': 20000, 'raid_level': 1},
+                  2:    {'disk_size': 20000, 'raid_level': 1, 'eth_cnt': 2},
                   },
               4: {
-                  1:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
-                  2:    {'disk_size': 22000, 'raid_level': 1, 'all_eth': True},
+                  1:    {'disk_size': 20000, 'raid_level': 1, 'eth_cnt': 4},
+                  2:    {'disk_size': 20000, 'raid_level': 1, 'eth_cnt': 4},
                   },
               #5: {
               #    1:    {'disk_size': 70000, 'raid_level': 0, 'all_eth': True},
@@ -30,9 +30,9 @@ param = {
              "tag_boot_policy": "bp-disk-pxe",
              
              "chassis_id":      1,
-             "cartridge_id":    3,
-             "server_id":       1,
-             "tag_disk_size": "18000",
+             "cartridge_id":    4,
+             "server_id":       2,
+             "tag_disk_size": "22000",
              
              
              #"tag_disk_group_config_policy_name": "raid0striped",
@@ -51,7 +51,9 @@ param = {
              "tag_kvm_ip_gateway":  "10.193.221.254",
              "tag_kvm_ip_netmask":  "255.255.255.0",
 
-             
+             "tag_mac_pool_name":   "snic_mac_pool",
+             "tag_mac_start":       "00:25:B5:00:00:00",
+             "tag_mac_end":         "00:25:B5:00:00:0F",
              
              "tag_eth_vlan":    "vlan10",
              "tag_eth_fabric":  "a",
@@ -114,7 +116,7 @@ def create_service_profile(ucsm_ssh, param):
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
-def create_eth_if_in_service_profile(ucsm_ssh, param):
+def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
     chassis     = str(param['chassis_id'])
     cartridge   = str(param['cartridge_id'])
     server      = str(param['server_id'])
@@ -126,15 +128,16 @@ def create_eth_if_in_service_profile(ucsm_ssh, param):
     
     param['tag_service_profile_name'] = '-'.join(['sp', chassis, cartridge, server])
     
-    eth_id_number_list = range(2, 7)
+    current_eth_cnt = 0
+    eth_id_number_list = range(3, 8)
     eth_id_number_list.insert(0, 113)
     eth_id_number_list.insert(0, 2000)
     for eth_id_number in eth_id_number_list: 
         eth_id = str(eth_id_number).zfill(2)
         if eth_id_number  == 113:
-            eth_id = '01'
+            eth_id = '02'
         elif eth_id_number  == 2000:
-            eth_id = '07'
+            eth_id = '01'
         eth_full_id_list = [chassis_id, cartridge_id, server_id, eth_id]
         vlan_id = str(120 + eth_id_number)
         if eth_id_number  == 113 or eth_id_number  == 2000:
@@ -143,13 +146,20 @@ def create_eth_if_in_service_profile(ucsm_ssh, param):
         param["tag_eth_name"] = ''.join([param["eth_pxe_name_prefix"], vlan_id])
         param["tag_eth_vlan"] = ''.join(["vlan", vlan_id])
         param['tag_eth_order'] = str(int(eth_id) + 1)
-        if eth_id_number == 2000 or eth_id_number % 2 == 1:
+        if eth_id_number == 2000:
+            param["tag_eth_fabric"] = 'b'
+        elif eth_id_number == 113:
+            param["tag_eth_fabric"] = 'a'
+        elif eth_id_number % 2 == 1:
             param["tag_eth_fabric"] = 'b'
         else:
             param["tag_eth_fabric"] = 'a'
         pprint.pprint(param)
         file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_eth_vlan.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)
+        current_eth_cnt += 1
+        if current_eth_cnt >= eth_cnt: 
+            break
     
     
 def associate_service_profile(ucsm_ssh, param):
@@ -220,5 +230,9 @@ def get_all_host_ip():
     return host_ip_list
 
 
-
+def create_mac_pool(ucsm_ssh, param):
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "mac_pool.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
                 

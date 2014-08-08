@@ -17,6 +17,8 @@ if __name__ == '__main__':
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     ucsm_ssh = ucsm.get_ssh()
     
+    sp_define.create_mac_pool(ucsm_ssh, param)
+    
     sp_define.create_boot_policy(ucsm_ssh, param)
     
     sp_define.create_kvm_console_ip_pool(ucsm_ssh, param)

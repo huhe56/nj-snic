@@ -17,7 +17,6 @@ top
              set fabric tag_eth_fabric
              set identity dynamic-mac tag_mac_address
          exit
-         power up
          set boot-policy tag_boot_policy
          set ext-mgmt-ip-state pooled
          set ext-mgmt-ip-pool-name tag_kvm_ip_pool_name

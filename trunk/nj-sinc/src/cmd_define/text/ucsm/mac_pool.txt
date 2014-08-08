@@ -1,0 +1,7 @@
+top
+   scope org
+     enter mac-pool tag_mac_pool_name
+     	 create block tag_mac_start tag_mac_end
+     exit
+   exit
+commit-buffer
