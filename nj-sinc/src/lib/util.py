@@ -281,6 +281,7 @@ class Util(object):
             if cmd:
                 if param:
                     for key, value in param.iteritems():
+                        #Util._logger.info(str(key) + ": " + str(value))
                         if key.startswith('tag_'):
                             cmd = cmd.replace(key, value)
                 #print cmd

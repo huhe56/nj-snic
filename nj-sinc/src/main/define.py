@@ -11,16 +11,29 @@ class Define():
     classdocs
     '''
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 20
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140806-042248-rev184822-20"
+    TEST_BED = 1
     
-    UCSM_HOSTNAME   = "10.193.221.130"
-    UCSM_HOSTNAME_B = "10.193.221.132"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 24
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140812-131439-rev185577-24"
+    
+    UCSM_HOSTNAME   = None
+    UCSM_HOSTNAME_B = None
+    NJ_HOSTNAME     = None
+    NODE_DEFAULT_USERNAME   = None
+    if TEST_BED == 1:
+        UCSM_HOSTNAME   = "10.193.221.130"
+        UCSM_HOSTNAME_B = "10.193.221.132"
+        NJ_HOSTNAME     = "10.193.221.133"
+        NODE_DEFAULT_USERNAME   = 'huhe'
+    elif TEST_BED == 3:
+        UCSM_HOSTNAME   = "10.193.221.150"
+        UCSM_HOSTNAME_B = "10.193.221.152"
+        NJ_HOSTNAME     = "10.193.221.153"
+        NODE_DEFAULT_USERNAME   = 'huan'
     
     NODE_HEAD_NAME          = "10.193.221.245"
-    NODE_DEFAULT_USERNAME   = 'huhe'
     NODE_USERNAME_ROOT      = 'root'
-    NODE_DEFAULT_PASSWORD   = 'nbv12345'
+    
     
     PATH_DOWNLOADS          = "/home/huhe/Downloads/"
     

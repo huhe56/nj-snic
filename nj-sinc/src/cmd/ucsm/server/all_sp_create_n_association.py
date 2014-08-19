@@ -5,6 +5,7 @@ Created on Aug 26, 2014
 '''
 
 import time
+import pprint
 
 from main.define import Define
 from lib.ucsm import UCSM
@@ -14,6 +15,8 @@ from cmd.ucsm.server import sp_define
 if __name__ == '__main__':
     
     param  = sp_define.param
+    
+    #pprint.pprint(sp_define.config)
     
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     ucsm_ssh = ucsm.get_ssh()
@@ -43,6 +46,7 @@ if __name__ == '__main__':
                 param['tag_disk_group_config_policy_name'] = disk_policy
                 param['tag_boot_policy'] = boot_policy
                 
+                pprint.pprint(param)
                 sp_define.create_service_profile(ucsm_ssh, param)
                 
                 eth_cnt -= 1

@@ -58,5 +58,10 @@ if __name__ == '__main__':
     ssh.send_expect_prompt("commit-buffer")
     ssh.exit()
     
+    time.sleep(300)
+    
+    ssh = Util.wait_for_node_to_boot_up(Define.UCSM_HOSTNAME_B, Define.UCSM_DEFAULT_USERNAME, Define.UCSM_DEFAULT_PASSWORD, "show version")
+    ssh.exit()
+    
     
         
