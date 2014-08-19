@@ -11,7 +11,7 @@ class CMC:
     def __init__(self, cmc_ip=None):
         self._ssh = None
         
-        head_node = NodeHead('10.193.221.245', "huhe")
+        head_node = NodeHead(Define.NODE_HEAD_NAME, Define.NODE_DEFAULT_USERNAME)
         self._ssh = head_node.get_ssh()
         self._ssh.send_expect_prompt('cmc.sh')
         
