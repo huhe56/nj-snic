@@ -10,34 +10,86 @@ config_dict = {
             3: {
                 1:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
                 2:    {'disk_size': 40000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                },
+            },
             4: {
                 1:    {'disk_size': 60000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 100000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                }
+                2:    {'disk_size': 60000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
             }
-        },
+        }
+    },
     3: {
         1: {
             1: {
-                1:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                  },
-            2: {
-                1:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                  },
-            3: {
-                1:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                  },
-            4: {
-                1:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
+                1: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
                 },
+                2: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                            2: {'disk_size': 20000, 'raid_level': 0},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+            },
+            2: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                            2: {'disk_size': 20000, 'raid_level': 0},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+            },
+            3: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                            2: {'disk_size': 20000, 'raid_level': 0},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+            },
+            4: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'lun': {
+                            1: {'disk_size': 40000, 'raid_level': 0},
+                            2: {'disk_size': 20000, 'raid_level': 0},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
             }
         }
     }
+}
 
 mgmt_ip_pool_dict = {
     1:  {
@@ -94,7 +146,7 @@ param = {
              "tag_eth_fabric":  "a",
              "tag_eth_order":   "1",
              
-             #"mac_prefix":  '00:25',
+             # "mac_prefix":  '00:25',
              "uuid_prefix": '00000000-0000-0000-2601-000000'
     
              # ''' --------- auto generate ---------- '''
@@ -109,8 +161,8 @@ param = {
 test_bed = Define.TEST_BED
 config = config_dict[test_bed]
 param['test_bed_id'] = test_bed
-param['tag_kvm_ip_start']   = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_start']
-param['tag_kvm_ip_end']     = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_end']
+param['tag_kvm_ip_start'] = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_start']
+param['tag_kvm_ip_end'] = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_end']
 param['tag_kvm_ip_gateway'] = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_gateway']
 param['tag_kvm_ip_netmask'] = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_netmask']
 
@@ -154,8 +206,6 @@ def create_service_profile(ucsm_ssh, param):
     server_full_id = ''.join(server_full_id_list)
     
     param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
-    param['tag_local_lun'] = ''.join(['lun', server_full_id])
-    param['tag_volumn_name'] = ''.join(['volumn', server_full_id])
     param['tag_mac_address'] = get_mac_address(test_bed, chassis, cartridge, server, eth_id)
     param["tag_eth_name"] = ''.join([param["eth_pxe_name_prefix"], str(param["eth_pxe_name_index"])])
     param['tag_uuid'] = ''.join([param['uuid_prefix'], server_full_id])
@@ -171,7 +221,7 @@ def get_service_profile_name(chassis, cartridge, server):
 
 
 def get_mac_address(test_bed, chassis, cartridge, server, eth, vm='00'):
-    mac = [None]*6
+    mac = [None] * 6
     mac[0] = '00'
     mac[1] = '25'
     mac[2] = test_bed + chassis
@@ -180,6 +230,25 @@ def get_mac_address(test_bed, chassis, cartridge, server, eth, vm='00'):
     mac[5] = eth
     return ':'.join(mac)
 
+
+def create_lun_in_service_profile(ucsm_ssh, param, lun):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    
+    for lun_order, lun_detail in lun.iteritems():
+        param['tag_lun_order'] = str(lun_order)
+        param['tag_disk_size'] = str(lun_detail['disk_size'])
+        raid_level = lun_detail['raid_level']
+        param['tag_disk_group_config_policy_name'] = raid_level_disk_group_config_policy_dict[raid_level]['policy_name']
+        param['tag_local_lun'] = ''.join(['lun', chassis, cartridge, server]) + '_' + str(lun_order)
+        param['tag_volumn_name'] = ''.join(['vol', chassis, cartridge, server]) + '_' + str(lun_order)
+    
+        file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_profile.txt"   
+        Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
 
 def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
     test_bed = str(param['test_bed_id'])
