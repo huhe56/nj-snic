@@ -11,15 +11,17 @@ class Define():
     classdocs
     '''
     
-    TEST_BED = 1
+    TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 24
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140812-131439-rev185577-24"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 46
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140825-143108-rev187250-46"
     
     UCSM_HOSTNAME   = None
     UCSM_HOSTNAME_B = None
     NJ_HOSTNAME     = None
     NODE_DEFAULT_USERNAME   = None
+    PATH_DOWNLOADS  = None
+    
     if TEST_BED == 1:
         UCSM_HOSTNAME   = "10.193.221.130"
         UCSM_HOSTNAME_B = "10.193.221.132"
@@ -33,9 +35,11 @@ class Define():
     
     NODE_HEAD_NAME          = "10.193.221.245"
     NODE_USERNAME_ROOT      = 'root'
+    NODE_DEFAULT_PASSWORD   = 'huanhe56'
     
+    SERVER_DEFAULT_PASSWORD = 'nbv12345'
     
-    PATH_DOWNLOADS          = "/home/huhe/Downloads/"
+    PATH_DOWNLOADS          = "/tmp"
     
     PATH_NJ_ROOT            = "/home/huhe/workspace/nj/"
     PATH_SNIC_ROOT          = PATH_NJ_ROOT + "snic/"

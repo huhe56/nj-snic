@@ -17,7 +17,7 @@ class NodeCompute(RedHat):
     '''
 
 
-    def __init__(self, hostname, username=Define.NODE_USERNAME_ROOT, password=Define.NODE_DEFAULT_PASSWORD):
+    def __init__(self, hostname, username=Define.NODE_USERNAME_ROOT, password=Define.SERVER_DEFAULT_PASSWORD):
         '''
         Constructor
         '''
