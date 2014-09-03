@@ -87,7 +87,7 @@ class Util(object):
     probe:      probe until pattern is expected
     '''    
     @staticmethod
-    def run_step_list(ssh, file_json_step):
+    def run_step_list(ssh, file_json_step, param=None):
         json_file = open(file_json_step)    
         step_list = json.load(json_file)
         json_file.close()
@@ -95,6 +95,11 @@ class Util(object):
         ret = None
         for step in step_list:
             step_cmd = step["cmd"]
+            
+            if param:
+                for key, val in param.iteritems():
+                    step_cmd = step_cmd.replace(key, val)
+            
             step_for = None
             if "for" in step.keys(): step_for = step["for"]
             
