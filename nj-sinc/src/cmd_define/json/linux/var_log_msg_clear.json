@@ -1,0 +1,11 @@
+[
+	{
+		"cmd": 		"sh know_host_copy.sh"
+	},
+	{
+		"cmd": 		"rm -fr /tmp/var_log_msg"
+	},
+	{
+		"cmd": 		"mkdir /tmp/var_log_msg"
+	}
+]

@@ -33,7 +33,7 @@ if __name__ == '__main__':
         Util.run_text_step(ucsm.get_ssh(), file_text_step, param)
         
     '''
-    enable server and uplink ports, vlan10
+    enable server and uplink ports
     '''
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "basic_setup.txt"   
     Util.run_text_step(ucsm.get_ssh(), file_text_step)

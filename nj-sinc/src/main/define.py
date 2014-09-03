@@ -5,6 +5,7 @@ Created on Aug 15, 2013
 '''
 
 PEXPECT_OUTPUT_STDOUT   = True
+HOST_IP = None
 
 class Define():
     '''
@@ -68,7 +69,7 @@ class Define():
     UCSM_DEFAULT_USERNAME   = 'admin'
     UCSM_DEFAULT_PASSWORD   = 'nbv12345'
 
-    TIMEOUT_SSH         = 10
+    TIMEOUT_SSH         = 20
     PATTERN_SSH_NEW_KEY = '(?i)are you sure you want to continue connecting'
     PATTERN_PASSWORD    = '(?i)password'
     PATTERN_PROMPT      = '[#$]'
