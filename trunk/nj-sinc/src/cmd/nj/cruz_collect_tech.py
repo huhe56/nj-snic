@@ -12,9 +12,14 @@ from lib.cmc import CMC
 
 if __name__ == '__main__':
     
+    ssh_new = True
+    
     cmc = CMC()
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cmc_touch_tech_tgz.json"
     cmc.run_cmd_step(file_json_step)
+    if ssh_new:
+        file_json_step = Define.PATH_SNIC_JSON_NJ + "cmc_scp_ssh_new.json"
+        cmc.run_cmd_step(file_json_step)
     cmc.exit()
     
     cruz = Cruz()

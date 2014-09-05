@@ -8,12 +8,12 @@ config_dict = {
     1: {
         1: {
             3: {
-                1:    {'disk_size': 20000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 40000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
+                1:    {'disk_size': 20, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
+                2:    {'disk_size': 40, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
             },
             4: {
-                1:    {'disk_size': 60000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 60000, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
+                1:    {'disk_size': 60, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
+                2:    {'disk_size': 60, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
             }
         }
     },
@@ -22,15 +22,15 @@ config_dict = {
             1: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
-                            2: {'disk_size': 20000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
+                            2: {'disk_size': 20, 'raid_level': 0},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -39,15 +39,15 @@ config_dict = {
             2: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
-                            2: {'disk_size': 20000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
+                            2: {'disk_size': 20, 'raid_level': 0},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -56,15 +56,15 @@ config_dict = {
             3: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
-                            2: {'disk_size': 20000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
+                            2: {'disk_size': 20, 'raid_level': 0},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -73,15 +73,49 @@ config_dict = {
             4: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2:  {
                        'lun': {
-                            1: {'disk_size': 40000, 'raid_level': 0},
-                            2: {'disk_size': 20000, 'raid_level': 0},
+                            1: {'disk_size': 40, 'raid_level': 0},
+                            2: {'disk_size': 20, 'raid_level': 0},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
+            },
+            5: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': 40, 'raid_level': 0},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'lun': {
+                            1: {'disk_size': 40, 'raid_level': 0},
+                            2: {'disk_size': 20, 'raid_level': 0},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
+            },
+            6: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': 40, 'raid_level': 0},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'lun': {
+                            1: {'disk_size': 40, 'raid_level': 0},
+                            2: {'disk_size': 20, 'raid_level': 0},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -241,7 +275,7 @@ def create_lun_in_service_profile(ucsm_ssh, param, lun):
         raid_level = lun_detail['raid_level']
         param['tag_disk_group_config_policy_name'] = raid_level_disk_group_config_policy_dict[raid_level]['policy_name']
         param['tag_local_lun'] = ''.join(['lun', chassis, cartridge, server]) + '_' + str(lun_order)
-        param['tag_volumn_name'] = ''.join(['vol', chassis, cartridge, server]) + '_' + str(lun_order)
+        #param['tag_volumn_name'] = ''.join(['vol', chassis, cartridge, server]) + '_' + str(lun_order)
     
         file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_profile.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)

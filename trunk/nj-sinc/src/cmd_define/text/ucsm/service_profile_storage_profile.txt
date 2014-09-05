@@ -6,7 +6,6 @@ top
                  set disk-policy-name tag_disk_group_config_policy_name
                  set expand-to-avail no
                  set size tag_disk_size
-                 set volume-name tag_volumn_name
                  set order tag_lun_order
              exit
          exit

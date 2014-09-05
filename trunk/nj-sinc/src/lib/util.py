@@ -203,6 +203,12 @@ class Util(object):
 
 
     @staticmethod
+    def collect_ssh_new(ssh):
+        file_json_step = Define.PATH_SNIC_JSON_UCSM + "collect_ssh_new.json"
+        Util.run_step_list(ssh, file_json_step)
+        
+
+    @staticmethod
     def collect_ucsm_tech_support(ssh):
         file_json_step = Define.PATH_SNIC_JSON_UCSM + "collect_ucsm_tech_support.json"
         Util.run_step_list(ssh, file_json_step)
