@@ -1,5 +1,9 @@
 [
 	{
+		"cmd": 		""
+	},
+	
+	{
 		"cmd": 		"cd tools/medusa/image/linux-x86"
 	},
 	

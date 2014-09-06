@@ -16,7 +16,6 @@ if __name__ == '__main__':
         if host_ip == '20.200.10.142': continue
         try:
             node = NodeCompute(host_ip)
-            node.setup_medusa()
             node.exit()
         except:
             pass
