@@ -306,7 +306,7 @@ def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
             param["tag_eth_fabric"] = 'a'
         else:
             param["tag_eth_fabric"] = 'b'
-        pprint.pprint(param)
+        #pprint.pprint(param)
         file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_eth_vlan.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)
         current_eth_cnt += 1

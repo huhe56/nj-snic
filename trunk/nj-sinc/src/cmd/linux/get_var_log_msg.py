@@ -22,7 +22,7 @@ if __name__ == '__main__':
     print host_ip_list
     for host_ip in host_ip_list:
         param['tag_host_ip'] = host_ip
-        if host_ip == '20.200.10.132': continue
+        if host_ip == '20.200.10.142': continue
         try:
             file_json_step = Define.PATH_SNIC_JSON_LINUX + "var_log_msg_get.json"   
             Util.run_step_list(head_node.get_ssh(), file_json_step, param)

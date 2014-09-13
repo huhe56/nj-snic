@@ -28,7 +28,7 @@ class Cruz:
             self.exit()
             
             
-    def wait_for_erase_complete(self, drive_id_list):
+    def wait_for_erase_complete(self, drive_id_list, sleep=None):
         self._ssh.send('storelibtest')
         self._ssh.expect('Please enter choice : ')
         self._ssh.send('4')
@@ -36,7 +36,6 @@ class Cruz:
         
         completed_count = 0
         while completed_count < len(drive_id_list):
-            time.sleep(30)
             completed_count = 0
             for drive_id in drive_id_list:
                 self._ssh.send('8')
@@ -47,7 +46,8 @@ class Cruz:
                     completed_count += 1
                 time.sleep(1)
                 self._ssh.send('')
-        
+            if sleep:
+                time.sleep(sleep)
         self._ssh.expect('Please enter choice :')
         self._ssh.send('0')
             
