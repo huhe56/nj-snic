@@ -24,7 +24,7 @@ if __name__ == '__main__':
         cruz.run_cmd_step(file_json_step)
     time.sleep(600)
     
-    cruz.wait_for_erase_complete(PHYSICAL_DRIVE_ID_LIST)
+    cruz.wait_for_erase_complete(PHYSICAL_DRIVE_ID_LIST, 300)
         
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_show_configuration.json"
     cruz.run_cmd_step(file_json_step)
