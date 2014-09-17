@@ -22,10 +22,10 @@ class Cruz:
         
         
     def run_cmd_step(self, file_json_step):
-        try:
-            Util.run_step_list(self._ssh, file_json_step)
-        except:
-            self.exit()
+        #try:
+        Util.run_step_list(self._ssh, file_json_step)
+        #except:
+            #self.exit()
             
             
     def wait_for_erase_complete(self, drive_id_list, sleep=None):

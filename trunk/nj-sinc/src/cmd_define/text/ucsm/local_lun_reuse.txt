@@ -1,0 +1,20 @@
+top
+	scope org
+		scope service-profile tag_service_profile_name
+			enter storage-profile-def
+				create local-lun tag_local_lun_name
+					set disk-policy-name tag_disk_policy_name
+					set expand-to-avail tag_expand_to_avail
+					set order tag_order
+					set size tag_size
+				exit
+			exit
+			commit-buffer
+			scope local-lun-ref tag_local_lun_name
+				set deployed-lun-name tag_deployed_lun_name
+			exit
+		exit
+	exit
+	commit-buffer
+	
+	

@@ -120,6 +120,16 @@ config_dict = {
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 }
+            },
+            9: {
+                1: {
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
             }
         }
     }
@@ -347,6 +357,26 @@ def delete_service_profile(ucsm_ssh, param):
     
     param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_deletion.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def remove_local_lun(ucsm_ssh, param):
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "local_lun_remove.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def reuse_local_lun(ucsm_ssh, param):
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "local_lun_reuse.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
