@@ -1,0 +1,14 @@
+top
+	scope org
+		enter storage-profile tag_storage_profile_name
+			enter local-lun tag_local_lun_name_1
+				set disk-policy-name tag_disk_policy_name_1
+				set expand-to-avail tag_expand_to_avail_1
+				set order tag_order_1
+				set size tag_size_1
+			exit
+		exit
+	exit
+	commit-buffer
+	
+	

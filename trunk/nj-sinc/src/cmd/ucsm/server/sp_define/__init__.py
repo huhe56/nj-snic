@@ -235,6 +235,31 @@ def create_disk_group_config_policy(ucsm_ssh, param):
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
+def create_storage_profile(ucsm_ssh, param):
+    param['tag_storage_profile_name']   = 'sp-1-lun'
+    param['tag_local_lun_name_1']       = 'sp1lun_1'
+    param['tag_disk_policy_name_1']     = 'raid0striped'
+    param['tag_expand_to_avail_1']      = 'no'
+    param['tag_order_1']  = '1'
+    param['tag_size_1']   = '40'
+    param['cmd_text_file_name'] = 'storage_profile_1_lun.txt'
+    run(ucsm_ssh, param)
+    
+    param['tag_storage_profile_name']   = 'sp-2-lun'
+    param['tag_local_lun_name_1']       = 'sp2lun_1'
+    param['tag_disk_policy_name_1']     = 'raid0striped'
+    param['tag_expand_to_avail_1']      = 'no'
+    param['tag_order_1']  = '1'
+    param['tag_size_1']   = '40'
+    param['tag_local_lun_name_2']       = 'sp2lun_2'
+    param['tag_disk_policy_name_2']     = 'raid0striped'
+    param['tag_expand_to_avail_2']      = 'no'
+    param['tag_order_2']  = '2'
+    param['tag_size_2']   = '20'
+    param['cmd_text_file_name'] = 'storage_profile_2_lun.txt'
+    run(ucsm_ssh, param)
+    
+    
 def create_service_profile(ucsm_ssh, param):
     test_bed    = str(param['test_bed_id'])
     chassis     = str(param['chassis_id'])
@@ -259,6 +284,13 @@ def create_service_profile(ucsm_ssh, param):
 
 def get_service_profile_name(chassis, cartridge, server):
     return 'sp-' + ''.join([chassis, cartridge, server]) 
+
+
+def get_service_profile_name_from_param(param):
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    return get_service_profile_name(chassis, cartridge, server)
 
 
 def get_mac_address(test_bed, chassis, cartridge, server, eth, vm='00'):
@@ -399,6 +431,17 @@ def change_boot_policy_order(ucsm_ssh, param, order_storage_local_any=1, order_l
     param['tag_boot_lan_order'] = str(order_lan)
 
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_change.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def run(ucsm_ssh, param):
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + param['cmd_text_file_name']   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def run_in_service_profile(ucsm_ssh, param):
+    param['tag_service_profile_name'] = get_service_profile_name_from_param(param)
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "local_lun_reuse.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
