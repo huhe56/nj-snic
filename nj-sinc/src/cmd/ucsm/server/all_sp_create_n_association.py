@@ -24,7 +24,7 @@ if __name__ == '__main__':
     for chassis_id, chassis in sp_define.config.iteritems():
         for cartridge_id, cartridge in chassis.iteritems():
             for server_id, server in cartridge.iteritems():
-                
+                if cartridge_id != 9: continue
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
@@ -40,8 +40,9 @@ if __name__ == '__main__':
                 if eth_cnt > 0:
                     sp_define.create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt) 
                     
-                lun = server['lun']
-                sp_define.create_lun_in_service_profile(ucsm_ssh, param, lun)
+                if 'lun' in server.keys():
+                    lun = server['lun']
+                    sp_define.create_lun_in_service_profile(ucsm_ssh, param, lun)
                 
                 #sp_define.associate_service_profile(ucsm_ssh, param)
                 #time.sleep(300)

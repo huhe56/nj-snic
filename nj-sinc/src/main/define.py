@@ -14,8 +14,8 @@ class Define():
     
     TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 65
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140909-143109-rev189149-65"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 70
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "140913-143110-rev189788-70"
     
     UCSM_HOSTNAME   = None
     UCSM_HOSTNAME_B = None
@@ -32,7 +32,7 @@ class Define():
         UCSM_HOSTNAME   = "10.193.221.150"
         UCSM_HOSTNAME_B = "10.193.221.152"
         NJ_HOSTNAME     = "10.193.221.153"
-        NODE_DEFAULT_USERNAME   = 'huan'
+        NODE_DEFAULT_USERNAME   = 'huhe'
     
     NODE_HEAD_NAME          = "10.193.221.245"
     NODE_USERNAME_ROOT      = 'root'

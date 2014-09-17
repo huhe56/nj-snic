@@ -3,8 +3,8 @@
 		"cmd":	""
 	},
 	{
-		"cmd":		"rm /config/vnic.cfg*"
-	}
+		"cmd":	"rm /config/vnic.cfg*"
+	},
 	{
 		"cmd":	""
 	}
