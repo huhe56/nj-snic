@@ -4,33 +4,35 @@ import pprint
 from main.define import Define
 from lib.util import Util
 
+
+RAID_LEVEL_0    = 0
+RAID_LEVEL_1    = 1
+raid_level = RAID_LEVEL_0
+
+LUN_SIZE_1  = 40
+LUN_SIZE_2  = 20
+
+VLAN_PXE    = 10
+VLAN_ISCSI  = 114
+VLAN_MEDUSA = 2000
+
 config_dict = {
-    1: {
-        1: {
-            3: {
-                1:    {'disk_size': 20, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 40, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-            },
-            4: {
-                1:    {'disk_size': 60, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-                2:    {'disk_size': 60, 'raid_level': 1, 'boot_policy': 'uefi', 'eth_cnt': 4},
-            }
-        }
-    },
+    # test bed 3
     3: {
-        1: {
+        # chassis 1
+        1: { 
             1: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
-                            2: {'disk_size': 20, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -39,15 +41,15 @@ config_dict = {
             2: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
-                            2: {'disk_size': 20, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -56,15 +58,15 @@ config_dict = {
             3: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
-                            2: {'disk_size': 20, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -73,15 +75,15 @@ config_dict = {
             4: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2:  {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
-                            2: {'disk_size': 20, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -90,15 +92,15 @@ config_dict = {
             5: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2:  {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
-                            2: {'disk_size': 20, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -107,21 +109,68 @@ config_dict = {
             6: {
                 1: {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
                         },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 },
                 2:  {
                        'lun': {
-                            1: {'disk_size': 40, 'raid_level': 0},
-                            2: {'disk_size': 20, 'raid_level': 0},
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
                             },
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
                 }
             },
-            9: {
+            7: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'lun': {
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
+            },
+            8: {
+                1: {
+                       'lun': {
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                        },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'lun': {
+                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
+                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
+                            },
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
+            }
+        },
+        # for reuse test purpose, still use chassis servers
+        2: {
+            4: {
+                1: {
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                },
+                2:  {
+                       'boot_policy': 'uefi',
+                       'eth_cnt': 4
+                }
+            },
+            5: {
                 1: {
                        'boot_policy': 'uefi',
                        'eth_cnt': 4
@@ -160,9 +209,9 @@ param = {
              "tag_boot_policy": "disk-pxe-uefi",
              "tag_boot_mode":   "legacy",
              
-             "chassis_id":      1,
-             "cartridge_id":    4,
-             "server_id":       2,
+             "chassis_id":      None,
+             "cartridge_id":    None,
+             "server_id":       None,
              "tag_disk_size": "22000",
              
              
@@ -335,9 +384,9 @@ def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
     data_vlan_start = int(test_bed) * 100 + 20 + 3
     data_vlan_end   = data_vlan_start + eth_cnt
     eth_vlan_list = range(data_vlan_start, data_vlan_end)
-    eth_vlan_list.insert(0, 113)
-    eth_vlan_list.insert(0, 2000)
-    eth_vlan_list.insert(0, 10)
+    eth_vlan_list.insert(0, VLAN_ISCSI)
+    eth_vlan_list.insert(0, VLAN_MEDUSA)
+    eth_vlan_list.insert(0, VLAN_PXE)
     for eth_vlan in eth_vlan_list: 
         eth_id = str(current_eth_cnt).zfill(2) 
         param['tag_mac_address'] = get_mac_address(test_bed, chassis, cartridge, server, eth_id)
