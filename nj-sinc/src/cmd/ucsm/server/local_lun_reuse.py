@@ -13,7 +13,7 @@ if __name__ == '__main__':
     
     param = {}
     param['chassis_id']     = 1
-    param['cartridge_id']   = 9
+    param['cartridge_id']   = 4
     param['server_id']      = 1
     
     param['tag_local_lun_name']     = 'lun141_1'

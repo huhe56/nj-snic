@@ -4,7 +4,7 @@ Created on Feb 27, 2014
 @author: huhe
 '''
 
-from main_ucsm.define import Define
+from main.define import Define
 from lib.logger import MyLogger
 
 
