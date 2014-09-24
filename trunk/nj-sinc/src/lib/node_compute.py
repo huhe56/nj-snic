@@ -110,6 +110,19 @@ class NodeCompute(RedHat):
         file_json_step = Define.PATH_SNIC_JSON_LINUX + "medusa_setup.json"
         Util.run_step_list(self._ssh, file_json_step)
             
+            
+    def start_medusa(self):
+        if self._hostname.endswith('1'):
+            file_json_step = Define.PATH_SNIC_JSON_LINUX + "medusa_start_1lun.json"
+        else:
+            file_json_step = Define.PATH_SNIC_JSON_LINUX + "medusa_start_2lun.json"
+        Util.run_step_list(self._ssh, file_json_step)
+        
+        
+    def stop_medusa(self):
+        file_json_step = Define.PATH_SNIC_JSON_LINUX + "medusa_stop.json"
+        Util.run_step_list(self._ssh, file_json_step)
+        
     
     def get_uptime(self):
         file_json_step = Define.PATH_SNIC_JSON_LINUX + "get_uptime.json"

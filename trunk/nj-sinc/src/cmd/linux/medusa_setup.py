@@ -6,20 +6,27 @@ Created on Aug 26, 2014
 
 from cmd.ucsm.server import sp_define
 from lib.node_compute import NodeCompute
-
+from lib.util import Util
 
 if __name__ == '__main__':
     
     host_ip_list = sp_define.get_all_host_ip()
-    print host_ip_list
+    result_dict = {}
     for host_ip in host_ip_list:
-        if host_ip != '20.200.10.142': continue
+        if not host_ip.startswith('20.200.10.1'): continue
+        print "\n"
+        print '-'*30 + host_ip + '-'*30
         try:
             node = NodeCompute(host_ip)
             node.setup_medusa()
             node.exit()
+            result_dict[host_ip] = True
         except:
-            pass
+            result_dict[host_ip] = False
+            
+    print "\n"
+    Util.print_host_status(result_dict)
+            
     
     
         

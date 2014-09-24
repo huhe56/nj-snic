@@ -300,4 +300,13 @@ class Util(object):
                 ssh.send_expect_prompt(cmd)
                 if interval: 
                     time.sleep(interval)
-                
+                  
+                    
+    @staticmethod       
+    def print_host_status(result_dict):
+        for host_ip, result in result_dict.iteritems():
+            if result:
+                print host_ip + ': PASSED'
+            else:
+                print host_ip + ': FAILED ' + '='*20
+        

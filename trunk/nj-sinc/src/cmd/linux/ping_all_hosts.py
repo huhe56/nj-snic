@@ -20,6 +20,7 @@ if __name__ == '__main__':
     host_ip_list = sp_define.get_all_host_ip()
     print host_ip_list
     for host_ip in host_ip_list:
+        if not host_ip.startswith('20.200.10.1'): continue
         status = Util.ping(head_node.get_ssh(), host_ip, 2)
         if status:
             print "Passed: " + host_ip + " is up"
