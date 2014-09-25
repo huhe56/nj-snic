@@ -1,0 +1,11 @@
+top
+scope server tag_server_id
+	scope cimc
+		enter ext-static-ip
+			set addr tag_addr
+			set default-gw tag_default_gw
+			set subnet tag_subnet
+		exit
+	exit
+	commit-buffer
+exit

@@ -87,3 +87,13 @@ class RedHat(Base):
         self._ssh.send_expect_prompt("ifconfig")
         
         
+    def get_os_version(self):
+        self._os_version = self._ssh.send_match_list("cat /etc/redhat-release", "[Red|Cent].*release [\d+|\.]+")
+        return self._os_version[0]
+    
+    
+    def get_snic_version(self):
+        self._snic_version = self._ssh.send_match_list("modinfo -F version snic", "0\.0\.1\.\d+")
+        return self._snic_version[0]
+    
+        

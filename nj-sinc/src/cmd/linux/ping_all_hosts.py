@@ -25,7 +25,7 @@ if __name__ == '__main__':
         if status:
             print "Passed: " + host_ip + " is up"
         else:
-            print "Failed: " + host_ip + " is down"
+            print "Failed: " + host_ip + " is down " + '='*20
     
     
         
