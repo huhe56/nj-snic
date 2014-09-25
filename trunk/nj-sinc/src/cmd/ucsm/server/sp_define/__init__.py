@@ -4,185 +4,12 @@ import pprint
 from main.define import Define
 from lib.util import Util
 
-
-RAID_LEVEL_0    = 0
-RAID_LEVEL_1    = 1
-raid_level = RAID_LEVEL_0
-
-LUN_SIZE_1  = 40
-LUN_SIZE_2  = 20
+from cmd.ucsm.server.sp_define_config_2 import config_dict
 
 VLAN_PXE    = 10
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
 
-config_dict = {
-    # test bed 3
-    3: {
-        # chassis 1
-        1: { 
-            1: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-            },
-            2: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-            },
-            3: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-            },
-            4: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            },
-            5: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            },
-            6: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            },
-            7: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            },
-            8: {
-                1: {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                        },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'lun': {
-                            1: {'disk_size': LUN_SIZE_1, 'raid_level': raid_level},
-                            2: {'disk_size': LUN_SIZE_2, 'raid_level': raid_level},
-                            },
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            }
-        },
-        # for reuse test purpose, still use chassis servers
-        2: {
-            4: {
-                1: {
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            },
-            5: {
-                1: {
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                },
-                2:  {
-                       'boot_policy': 'uefi',
-                       'eth_cnt': 4
-                }
-            }
-        }
-    }
-}
 
 mgmt_ip_pool_dict = {
     1:  {
@@ -391,12 +218,21 @@ def create_lun_in_service_profile(ucsm_ssh, param, lun):
         param['tag_disk_size'] = str(lun_detail['disk_size'])
         raid_level = lun_detail['raid_level']
         param['tag_disk_group_config_policy_name'] = raid_level_disk_group_config_policy_dict[raid_level]['policy_name']
-        param['tag_local_lun'] = ''.join(['lun', chassis, cartridge, server]) + '_' + str(lun_order)
-        #param['tag_volumn_name'] = ''.join(['vol', chassis, cartridge, server]) + '_' + str(lun_order)
-    
-        file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_profile.txt"   
+        param['tag_local_lun'] = ''.join(['lun', chassis, cartridge, server]) + '_' + str(lun_order)    
+        file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_lun.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)
     
+
+def create_storage_profile_in_service_profile(ucsm_ssh, param, storage_profile):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    param['tag_storage_profile_name'] = storage_profile
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_profile.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+
 
 def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
     test_bed = str(param['test_bed_id'])
