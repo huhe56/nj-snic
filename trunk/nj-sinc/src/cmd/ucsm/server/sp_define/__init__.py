@@ -308,6 +308,32 @@ def create_storage_profile(ucsm_ssh, param):
     param['cmd_text_file_name'] = 'storage_profile_2_lun.txt'
     run(ucsm_ssh, param)
     
+
+def get_ip_list(start_ip, count):
+    start_ip_item = start_ip.split('.')
+    last_byte = int(start_ip_item[3])
+    ip_list = []
+    for i in range(count):
+        start_ip_item[3] = str(last_byte)
+        this_ip = '.'.join(start_ip_item)
+        ip_list.append(this_ip)
+        last_byte += 1
+    return ip_list
+
+    
+def set_server_ext_mgmt_ip(ucsm_ssh, param):
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "server_ext_mgmt_ip.txt"   
+    ip_list = get_ip_list(param['tag_kvm_ip_start'], 16)
+    for chassis_id, chassis in config.iteritems():
+        if chassis_id != 1: continue
+        for cartridge_id, cartridge in chassis.iteritems():
+            for server_id, server in cartridge.iteritems():
+                param['tag_server_id']   = '/'.join([str(chassis_id), str(cartridge_id), str(server_id)])
+                param['tag_addr']        = ip_list.pop()
+                param['tag_default_gw']  = param['tag_kvm_ip_gateway']
+                param['tag_subnet']      = param['tag_kvm_ip_netmask']
+                Util.run_text_step(ucsm_ssh, file_text_step, param)
+
     
 def create_service_profile(ucsm_ssh, param):
     test_bed    = str(param['test_bed_id'])
