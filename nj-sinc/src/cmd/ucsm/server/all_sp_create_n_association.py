@@ -43,6 +43,9 @@ if __name__ == '__main__':
                 if 'lun' in server.keys():
                     lun = server['lun']
                     sp_define.create_lun_in_service_profile(ucsm_ssh, param, lun)
+                elif 'storage_profile' in server.keys():
+                    storage_profile = server['storage_profile']
+                    sp_define.create_storage_profile_in_service_profile(ucsm_ssh, param, storage_profile)
                 
                 #sp_define.associate_service_profile(ucsm_ssh, param)
                 #time.sleep(300)
