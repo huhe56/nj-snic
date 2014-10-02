@@ -29,11 +29,11 @@ if __name__ == '__main__':
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_show_configuration.json"
     cruz.run_cmd_step(file_json_step)
     
-    file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_rm_vniccfg.json"
-    cruz.run_cmd_step(file_json_step)
+    #file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_rm_vniccfg.json"
+    #cruz.run_cmd_step(file_json_step)
     
-    file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_reset.json"
-    cruz.run_cmd_step(file_json_step)
+    #file_json_step = Define.PATH_SNIC_JSON_NJ + "cruz_reset.json"
+    #cruz.run_cmd_step(file_json_step)
         
     cruz.exit()
     

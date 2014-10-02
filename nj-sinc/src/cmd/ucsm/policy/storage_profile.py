@@ -18,7 +18,6 @@ if __name__ == '__main__':
     
     param['tag_local_lun_name_1']   = 'sp1lun_1'
     param['tag_disk_policy_name_1'] = 'raid0striped'
-    param['tag_expand_to_avail_1']  = 'no'
     param['tag_order_1']  = '1'
     param['tag_size_1']   = '40'
     
@@ -30,13 +29,11 @@ if __name__ == '__main__':
     
     param['tag_local_lun_name_1']   = 'sp2lun_1'
     param['tag_disk_policy_name_1'] = 'raid0striped'
-    param['tag_expand_to_avail_1']  = 'no'
     param['tag_order_1']  = '1'
     param['tag_size_1']   = '40'
     
     param['tag_local_lun_name_2']   = 'sp2lun_2'
     param['tag_disk_policy_name_2'] = 'raid0striped'
-    param['tag_expand_to_avail_2']  = 'no'
     param['tag_order_2']  = '2'
     param['tag_size_2']   = '20'
     
