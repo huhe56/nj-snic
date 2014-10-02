@@ -31,6 +31,8 @@ if __name__ == '__main__':
         param['tag_raid_level'] = policy['policy_raid_level_name']
         sp_define.create_disk_group_config_policy(ucsm_ssh, param)
 
+    sp_define.create_storage_profile(ucsm_ssh, param)
+
     ucsm.exit()
     
 

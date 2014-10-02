@@ -3,7 +3,6 @@ top
      enter disk-group-config-policy tag_disk_group_config_policy_name
          enter disk-group-qual
              set drive-type ssd
-             set use-remaining-disks no
          exit
          set raid-level tag_raid_level
      exit
