@@ -29,8 +29,9 @@ if __name__ == '__main__':
     param = sp_define.param
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     
-    param['tag_eth_policy_name']        = 'LNX-NJ-default'
+    ''' default '''
     
+    param['tag_eth_policy_name']        = 'LNX-NJ-default'
     ''' 1 - 256 '''
     param['tag_trans_queue_count']      = 1
     ''' 64 - 4096 '''
@@ -47,7 +48,71 @@ if __name__ == '__main__':
     param['tag_failback_timeout']       = 5
     ''' 0 - 65535 '''
     param['tag_interrupt_coalescing_time']   = 125
+    param['cmd_text_file_name'] = 'eth_policy.txt'
+    sp_define.run(ucsm.get_ssh(), param)
     
+    ''' upper limit '''
+    
+    param['tag_eth_policy_name']        = 'LNX-NJ-upper'
+    ''' 1 - 256 '''
+    param['tag_trans_queue_count']      = 256
+    ''' 64 - 4096 '''
+    param['tag_trans_queue_ring_size']  = 4096
+    ''' 1 - 256 '''
+    param['tag_recv_queue_count']       = 256
+    ''' 64 - 4096 '''
+    param['tag_recv_queue_ring_size']   = 4096
+    ''' 1 - 512 '''
+    param['tag_comp_queue_count']       = 512
+    ''' 1 - 514 '''
+    param['tag_interrupt_count']        = 514
+    ''' 0 - 600 '''
+    param['tag_failback_timeout']       = 600
+    ''' 0 - 65535 '''
+    param['tag_interrupt_coalescing_time']   = 65535
+    param['cmd_text_file_name'] = 'eth_policy.txt'
+    sp_define.run(ucsm.get_ssh(), param)
+    
+    ''' lower limit '''
+    param['tag_eth_policy_name']        = 'LNX-NJ-lower'
+    ''' 1 - 256 '''
+    param['tag_trans_queue_count']      = 1
+    ''' 64 - 4096 '''
+    param['tag_trans_queue_ring_size']  = 64
+    ''' 1 - 256 '''
+    param['tag_recv_queue_count']       = 1
+    ''' 64 - 4096 '''
+    param['tag_recv_queue_ring_size']   = 64
+    ''' 1 - 512 '''
+    param['tag_comp_queue_count']       = 1
+    ''' 1 - 514 '''
+    param['tag_interrupt_count']        = 1
+    ''' 0 - 600 '''
+    param['tag_failback_timeout']       = 0
+    ''' 0 - 65535 '''
+    param['tag_interrupt_coalescing_time']   = 0
+    param['cmd_text_file_name'] = 'eth_policy.txt'
+    sp_define.run(ucsm.get_ssh(), param)
+    
+    ''' random '''
+    
+    param['tag_eth_policy_name']        = 'LNX-NJ-middle'
+    ''' 1 - 256 '''
+    param['tag_trans_queue_count']      = 128
+    ''' 64 - 4096 '''
+    param['tag_trans_queue_ring_size']  = 2048
+    ''' 1 - 256 '''
+    param['tag_recv_queue_count']       = 128
+    ''' 64 - 4096 '''
+    param['tag_recv_queue_ring_size']   = 2048
+    ''' 1 - 512 '''
+    param['tag_comp_queue_count']       = 256
+    ''' 1 - 514 '''
+    param['tag_interrupt_count']        = 257
+    ''' 0 - 600 '''
+    param['tag_failback_timeout']       = 300
+    ''' 0 - 65535 '''
+    param['tag_interrupt_coalescing_time']   = 32767
     param['cmd_text_file_name'] = 'eth_policy.txt'
     sp_define.run(ucsm.get_ssh(), param)
     
