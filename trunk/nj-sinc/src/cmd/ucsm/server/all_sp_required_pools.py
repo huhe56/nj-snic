@@ -23,7 +23,7 @@ if __name__ == '__main__':
     
     sp_define.create_boot_policy(ucsm_ssh, param)
     
-    ''' move to sever from service profile '''
+    # move to sever from service profile
     #sp_define.create_kvm_console_ip_pool(ucsm_ssh, param)
         
     for raid_level, policy in sp_define.raid_level_disk_group_config_policy_dict.iteritems():
@@ -34,6 +34,7 @@ if __name__ == '__main__':
     sp_define.create_storage_profile(ucsm_ssh, param)
 
     ucsm.exit()
+    
     
 
     
