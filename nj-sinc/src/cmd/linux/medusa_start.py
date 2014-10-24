@@ -14,7 +14,7 @@ if __name__ == '__main__':
     host_ip_list = sp_define.get_all_host_ip()
     result_dict = {}
     for host_ip in host_ip_list:
-        if not host_ip.startswith('20.200.10.112'): continue
+        if not host_ip.startswith('20.200.10.1'): continue
         print "\n"
         print '-'*30 + host_ip + '-'*30
         try:
@@ -25,6 +25,7 @@ if __name__ == '__main__':
         except:
             result_dict[host_ip] = False
             print "Unexpected error:", sys.exc_info()[0]
+            print "It is OK to have pexpect.EOF error since the ssh connection is closed."
             
     print "\n"
     Util.print_host_status(result_dict)
