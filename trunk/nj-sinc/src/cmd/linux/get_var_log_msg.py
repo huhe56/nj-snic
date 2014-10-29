@@ -4,6 +4,7 @@ Created on Aug 26, 2014
 @author: huhe
 '''
 
+import sys
 from main.define import Define
 from cmd.ucsm.server import sp_define
 from lib.util import Util
@@ -29,7 +30,8 @@ if __name__ == '__main__':
                 file_json_step = Define.PATH_SNIC_JSON_LINUX + "var_log_msg_get.json"   
                 Util.run_step_list(head_node.get_ssh(), file_json_step, param)
             except:
-                pass
+                print "Unexpected error:", sys.exc_info()[0]
+                
     
     
         

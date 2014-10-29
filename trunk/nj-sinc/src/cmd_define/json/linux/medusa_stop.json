@@ -8,11 +8,11 @@
 	},
 	
 	{
-		"cmd": 		"killall maim"
+		"cmd": 		"killall sh"
 	},
 	
 	{
-		"cmd": 		""
+		"cmd": 		"killall maim"
 	},
 	
 	{
