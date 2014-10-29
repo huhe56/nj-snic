@@ -96,4 +96,10 @@ class RedHat(Base):
         self._snic_version = self._ssh.send_match_list("modinfo -F version snic", "0\.0\.1\.\d+")
         return self._snic_version[0]
     
+    
+    def get_snic_stat(self):
+        self._ssh.send_expect_prompt("sh /root/tools/stat/stat.sh")
+    
+    
+    
         

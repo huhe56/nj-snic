@@ -15,18 +15,16 @@ if __name__ == '__main__':
     result_dict = {}
     for host_ip in host_ip_list:
         if not host_ip.startswith('20.200.10.1'): continue
-        print "\n"
-        print '-'*30 + host_ip + '-'*30
+        print "\n\n"
+        print '='*30 + host_ip + '='*30
         try:
             node = NodeCompute(host_ip)
-            node.stop_medusa()
+            node.get_snic_stat()
             node.exit()
-            result_dict[host_ip] = True
         except:
-            result_dict[host_ip] = False
             print "Unexpected error:", sys.exc_info()[0]
             
-    print "\n"
+    print "\n\n\n"
     Util.print_host_status(result_dict)
             
     

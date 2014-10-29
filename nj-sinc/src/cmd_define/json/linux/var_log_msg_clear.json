@@ -1,8 +1,5 @@
 [
 	{
-		"cmd": 		"sh know_host_copy.sh"
-	},
-	{
 		"cmd": 		"rm -fr /tmp/var_log_msg"
 	},
 	{
