@@ -22,3 +22,10 @@ class CMC:
         
     def run_cmd_step(self, file_json_step):
         Util.run_step_list(self._ssh, file_json_step)
+        
+    
+    def get_lsi_tty(self):
+        file_json_step = Define.PATH_SNIC_JSON_NJ + "cmc_collect_lsi_tty.json"
+        self.run_cmd_step(file_json_step)
+        
+        
