@@ -1,0 +1,5 @@
+[
+	{
+		"cmd":	"storutil --write --controller-type=RAID --controller=SLOT-2 --attribute=operation:get-tty-log"
+	}
+]
