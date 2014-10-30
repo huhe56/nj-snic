@@ -124,10 +124,6 @@ class NodeCompute(RedHat):
         Util.run_step_list(self._ssh, file_json_step)
         
     
-    def get_uptime(self):
-        file_json_step = Define.PATH_SNIC_JSON_LINUX + "get_uptime.json"
-        Util.run_step_list(self._ssh, file_json_step)
-        
         
     
         

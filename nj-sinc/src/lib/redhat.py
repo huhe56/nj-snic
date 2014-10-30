@@ -92,6 +92,11 @@ class RedHat(Base):
         return self._os_version[0]
     
     
+    def get_uptime(self):
+        self._uptime = self._ssh.send_match_list("uptime", "up [0-9:]+")
+        return self._uptime[0]
+        
+    
     def get_snic_version(self):
         self._snic_version = self._ssh.send_match_list("modinfo -F version snic", "0\.0\.1\.\d+")
         return self._snic_version[0]

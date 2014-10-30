@@ -305,8 +305,8 @@ class Util(object):
     @staticmethod       
     def print_host_status(result_dict):
         for host_ip, result in sorted(result_dict.iteritems()):
-            if result:
-                print host_ip + ': PASSED'
-            else:
+            if not result:
                 print host_ip + ': FAILED ' + '='*20
+            else:
+                print host_ip + ': ' + result
         

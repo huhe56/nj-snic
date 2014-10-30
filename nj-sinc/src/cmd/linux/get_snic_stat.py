@@ -21,8 +21,10 @@ if __name__ == '__main__':
             node = NodeCompute(host_ip)
             node.get_snic_stat()
             node.exit()
+            result_dict[host_ip] = True
         except:
             print "Unexpected error:", sys.exc_info()[0]
+            result_dict[host_ip] = False
             
     print "\n\n\n"
     Util.print_host_status(result_dict)
