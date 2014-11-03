@@ -104,6 +104,16 @@ class RedHat(Base):
     
     def get_snic_stat(self):
         self._ssh.send_expect_prompt("sh /root/tools/stat/stat.sh")
+        
+        
+    def get_medusa_process(self):
+        self._ssh.send_expect_prompt("ps -ef | grep maim | grep -v grep")
+        
+        
+    def run_cmd(self, cmd):
+        self._ssh.send_expect_prompt(cmd)
+        
+        
     
     
     

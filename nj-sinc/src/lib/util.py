@@ -307,6 +307,8 @@ class Util(object):
         for host_ip, result in sorted(result_dict.iteritems()):
             if not result:
                 print host_ip + ': FAILED ' + '='*20
+            elif result == True:
+                print host_ip + ': PASSED '
             else:
                 print host_ip + ': ' + result
         

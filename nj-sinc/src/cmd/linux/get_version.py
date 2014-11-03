@@ -18,12 +18,11 @@ if __name__ == '__main__':
         print '-'*30 + host_ip + '-'*30
         try:
             node = NodeCompute(host_ip)
-            uptime = node.get_uptime()
             os_version = node.get_os_version()
             snic_version = node.get_snic_version()
-            print '='*20 + uptime + "; " + snic_version + "; " + os_version
+            print '='*20 + "; " + snic_version + "; " + os_version
             node.exit()
-            result_dict[host_ip] = '; '.join([uptime, os_version, snic_version])
+            result_dict[host_ip] = '; '.join([os_version, snic_version])
         except:
             result_dict[host_ip] = False
             
