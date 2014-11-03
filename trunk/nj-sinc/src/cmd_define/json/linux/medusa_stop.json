@@ -7,9 +7,6 @@
 		"cmd": 		"killall medusa-all.sh"
 	},
 	
-	{
-		"cmd": 		"killall sh"
-	},
 	
 	{
 		"cmd": 		"killall maim"
