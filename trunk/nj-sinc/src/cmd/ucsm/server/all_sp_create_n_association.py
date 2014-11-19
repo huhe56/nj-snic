@@ -24,7 +24,7 @@ if __name__ == '__main__':
     for chassis_id, chassis in sp_define.config.iteritems():
         for cartridge_id, cartridge in chassis.iteritems():
             for server_id, server in cartridge.iteritems():
-                #if cartridge_id != 9: continue
+                if chassis_id != 1: continue
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id

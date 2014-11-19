@@ -4,16 +4,18 @@ Created on Aug 26, 2014
 @author: huhe
 '''
 
-import sys
+import sys, time
 from cmd.ucsm.server import sp_define
 from lib.node_compute import NodeCompute
 from lib.util import Util
 
 if __name__ == '__main__':
     
-    #cmd = 'find . -name *.bad -print'
-    cmd = 'dmesg | grep -i error | grep -v ERST'
-    cmd = 'grep -i error /root/tools/medusa/*/1*/*.log | grep -v label | grep -v "v Retry count on error" | grep -v "O loop error event handlers:" | grep -v "exit code 0"'
+    cmd1 = "grep ERR /root/tools/medusa/shell/host*.log"
+    cmd2 = "grep ERR /root/tools/medusa/shell-sdb/host*.log"
+    
+    cmd1 = "grep -i error /root/tools/medusa/shell/host*.log | grep -v label"
+    cmd2 = "grep -i error /root/tools/medusa/shell-sdb/host*.log | grep -v label"
     
     host_ip_list = sp_define.get_all_host_ip()
     result_dict = {}
@@ -23,7 +25,13 @@ if __name__ == '__main__':
         print '='*30 + host_ip + '='*30
         try:
             node = NodeCompute(host_ip)
-            node.run_cmd(cmd)
+            node.run_cmd(cmd1)
+            node.run_cmd("")
+            if host_ip.endswith('2'):
+                node.run_cmd("")
+                print '-'*15 + host_ip + '-'*15
+                node.run_cmd(cmd2)
+                node.run_cmd("")
             node.exit()
             result_dict[host_ip] = True
         except:

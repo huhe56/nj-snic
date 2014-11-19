@@ -26,7 +26,7 @@ class SSH(object):
 
     def login(self, hostname, username, password):        
         cmd = 'ssh ' + username + '@' + hostname
-        self._logger.debug(cmd)
+        #self._logger.debug(cmd)
         _session = pexpect.spawn(cmd, timeout=Define.TIMEOUT_SSH)
         if define.PEXPECT_OUTPUT_STDOUT:
             _session.logfile_read = sys.stdout
