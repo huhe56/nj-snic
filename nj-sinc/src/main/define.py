@@ -14,8 +14,8 @@ class Define():
     
     TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 122
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "141029-002920-rev196003-122"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 144
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "141117-123108-rev199046-144"
     
     UCSM_HOSTNAME   = None
     UCSM_HOSTNAME_A = None
@@ -72,7 +72,7 @@ class Define():
     UCSM_DEFAULT_USERNAME   = 'admin'
     UCSM_DEFAULT_PASSWORD   = 'nbv12345'
 
-    TIMEOUT_SSH         = 20
+    TIMEOUT_SSH         = 15
     PATTERN_SSH_NEW_KEY = '(?i)are you sure you want to continue connecting'
     PATTERN_PASSWORD    = '(?i)password'
     PATTERN_PROMPT      = '[#$]'

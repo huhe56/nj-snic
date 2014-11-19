@@ -4,7 +4,7 @@ import pprint
 from main.define import Define
 from lib.util import Util
 
-from cmd.ucsm.server.sp_define_config_2 import config_dict
+from cmd.ucsm.server.sp_define_config_3 import config_dict
 
 VLAN_PXE    = 10
 VLAN_ISCSI  = 114

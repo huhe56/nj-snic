@@ -8,7 +8,7 @@ import time
 from main.define import Define
 from lib.cruz import Cruz
 
-PHYSICAL_DRIVE_ID_LIST = [3, 4, 5, 6]
+PHYSICAL_DRIVE_ID_LIST = [5, 6, 7, 8]
 
 
 if __name__ == '__main__':
