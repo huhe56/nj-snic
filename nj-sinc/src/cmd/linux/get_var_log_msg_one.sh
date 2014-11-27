@@ -9,9 +9,9 @@ $cmd_rm
 
 for chassis in 1
 do
-	for cartridge in 5
+	for cartridge in 2
 	do
-		for server in 2
+		for server in 1
 		do
 			id="$chassis$cartridge$server"
 			host_ip="20.200.10.$id"

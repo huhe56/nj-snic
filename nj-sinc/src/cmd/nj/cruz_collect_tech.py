@@ -12,7 +12,7 @@ from lib.cmc import CMC
 
 if __name__ == '__main__':
     
-    ssh_new = False
+    ssh_new = True
     
     cmc = CMC()
     file_json_step = Define.PATH_SNIC_JSON_NJ + "cmc_touch_tech_tgz.json"
