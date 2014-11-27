@@ -7,7 +7,7 @@ Created on Sep 25, 2014
 SP_1_LUN    = 'sp-1-lun'
 SP_2_LUN    = 'sp-2-lun'
 
-SP_NAME_1   = SP_1_LUN
+SP_NAME_1   = SP_2_LUN
 SP_NAME_2   = SP_2_LUN
 
 BOOT_POLICY_LEGACY  = 'legacy'
@@ -16,7 +16,7 @@ BOOT_POLICY_UEFI    = 'uefi'
 BOOT_POLICY_1   = BOOT_POLICY_UEFI
 BOOT_POLICY_2   = BOOT_POLICY_UEFI
 
-ETH_CNT = 8
+ETH_CNT = 4
 
 config_dict = {
     # test bed 3

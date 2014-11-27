@@ -20,7 +20,7 @@ if __name__ == '__main__':
         try:
             node = NodeCompute(host_ip)
             uptime = node.get_uptime()
-            print '='*20 + uptime
+            print '='*20 + ' ' + uptime
             node.exit()
             result_dict[host_ip] = uptime
         except:
