@@ -10,8 +10,8 @@ SP_2_LUN    = 'sp-2-lun'
 SP_NAME_1   = SP_2_LUN
 SP_NAME_2   = SP_2_LUN
 
-BOOT_POLICY_LEGACY  = 'legacy'
-BOOT_POLICY_UEFI    = 'uefi'
+BOOT_POLICY_LEGACY  = 'disk-pxe-legacy'
+BOOT_POLICY_UEFI    = 'disk-pxe-uefi'
 
 BOOT_POLICY_1   = BOOT_POLICY_UEFI
 BOOT_POLICY_2   = BOOT_POLICY_UEFI
@@ -115,29 +115,6 @@ config_dict = {
                 },
                 2:  {
                        'storage_profile': SP_NAME_2,
-                       'boot_policy': BOOT_POLICY_2,
-                       'eth_cnt': ETH_CNT
-                }
-            }
-        },
-        # for reuse test purpose, still use chassis servers
-        2: {
-            4: {
-                1: {
-                       'boot_policy': BOOT_POLICY_1,
-                       'eth_cnt': ETH_CNT
-                },
-                2:  {
-                       'boot_policy': BOOT_POLICY_2,
-                       'eth_cnt': ETH_CNT
-                }
-            },
-            5: {
-                1: {
-                       'boot_policy': BOOT_POLICY_1,
-                       'eth_cnt': ETH_CNT
-                },
-                2:  {
                        'boot_policy': BOOT_POLICY_2,
                        'eth_cnt': ETH_CNT
                 }

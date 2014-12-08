@@ -6,6 +6,16 @@ from lib.util import Util
 
 from cmd.ucsm.server.sp_define_config_2 import config_dict
 
+HOST_SUFFIXE_LIST = [111, 121, 122, 131, 132]
+HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
+
+'''
+type = 1; boot lun
+type = 2; data lun
+type = 3; all lun
+'''
+MEDUSA_TEST_LUN_TYPE = 2
+
 VLAN_PXE    = 10
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
@@ -230,6 +240,16 @@ def create_storage_profile_in_service_profile(ucsm_ssh, param, storage_profile):
     param['tag_storage_profile_name'] = storage_profile
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_profile.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def create_iscsi_in_service_profile(ucsm_ssh, param):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_iscsi.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
 
 
 def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
@@ -292,6 +312,16 @@ def disassociate_service_profile(ucsm_ssh, param):
     
     
 def delete_service_profile(ucsm_ssh, param):
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_deletion.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def execute_cmd(ucsm_ssh, param):
     chassis = str(param['chassis_id'])
     cartridge = str(param['cartridge_id'])
     server = str(param['server_id'])

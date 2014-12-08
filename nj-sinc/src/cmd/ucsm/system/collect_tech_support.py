@@ -11,9 +11,9 @@ from lib.cmc import CMC
 
 if __name__ == '__main__':
     
-    cmc = CMC()
-    cmc.get_lsi_tty()
-    cmc.exit()
+    #cmc = CMC()
+    #cmc.get_lsi_tty()
+    #cmc.exit()
     
     ssh_new = False
     

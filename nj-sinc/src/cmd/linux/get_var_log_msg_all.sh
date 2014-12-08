@@ -16,7 +16,7 @@ do
 			id="$chassis$cartridge$server"
 			host_ip="20.200.10.$id"
 			target_dir="$target_root_dir/$host_ip"
-			mkdir $target_dir
+			mkdir -p $target_dir
 			cmd="scp root@$host_ip:/var/log/messages* $target_dir"
 			echo $cmd
 			$cmd

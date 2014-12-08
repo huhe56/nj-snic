@@ -17,7 +17,7 @@ do
 			host_ip="20.200.10.$id"
 			target_dir="$target_root_dir/$host_ip/1"
 			mkdir -p $target_dir
-			cmd="scp root@$host_ip:/root/tools/medusa/shell/*/*.bad $target_dir"
+			cmd="scp root@$host_ip:/root/tools/medusa/shell-sdb/*/*.bad $target_dir"
 			echo $cmd
 			$cmd
 			if [ $server = "2" ]; then

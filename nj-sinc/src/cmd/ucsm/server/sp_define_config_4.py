@@ -8,7 +8,7 @@ SP_1_LUN    = 'sp-1-lun'
 SP_2_LUN    = 'sp-2-lun'
 
 SP_NAME_1   = SP_1_LUN
-SP_NAME_2   = SP_2_LUN
+SP_NAME_2   = SP_1_LUN
 
 BOOT_POLICY_LEGACY  = 'disk-pxe-legacy'
 BOOT_POLICY_UEFI    = 'disk-pxe-uefi'
