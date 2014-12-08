@@ -21,6 +21,9 @@ if __name__ == '__main__':
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     ucsm_ssh = ucsm.get_ssh()
     
+    initiator_ip_suffix  = 40
+    initiator_iqn_suffix = 100
+    
     for chassis_id, chassis in sp_define.config.iteritems():
         for cartridge_id, cartridge in chassis.iteritems():
             for server_id, server in cartridge.iteritems():
@@ -29,9 +32,7 @@ if __name__ == '__main__':
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                 
-                boot_policy = server['boot_policy']
-                boot_policy = 'disk-pxe-' + boot_policy
-                param['tag_boot_policy'] = boot_policy
+                param['tag_boot_policy'] = server['boot_policy']
                 
                 #pprint.pprint(param)
                 sp_define.create_service_profile(ucsm_ssh, param)
@@ -46,6 +47,13 @@ if __name__ == '__main__':
                 elif 'storage_profile' in server.keys():
                     storage_profile = server['storage_profile']
                     sp_define.create_storage_profile_in_service_profile(ucsm_ssh, param, storage_profile)
+                
+                initiator_ip_suffix  += 1
+                initiator_iqn_suffix += 1
+                if server['boot_policy'].startswith('iscsi'):
+                    param['tag_initiator_ip_suffix']  = str(initiator_ip_suffix)
+                    param['tag_initiator_iqn_suffix'] = str(initiator_iqn_suffix)
+                    sp_define.create_iscsi_in_service_profile(ucsm_ssh, param)
                 
                 #sp_define.associate_service_profile(ucsm_ssh, param)
                 #time.sleep(300)

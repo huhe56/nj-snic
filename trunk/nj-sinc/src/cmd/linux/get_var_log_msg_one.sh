@@ -1,11 +1,15 @@
 #!/bin/sh
 
-target_root_dir="/tmp/var_log_msg"
-echo "cleaning $target_root_dir ..."
-cmd_rm="rm -fr $target_root_dir/*"
-echo $cmd_rm
-$cmd_rm
+clean=false
 
+target_root_dir="/tmp/var_log_msg"
+
+if [ "$clean" = true ]; then
+	echo "cleaning $target_root_dir ..."
+	cmd_rm="rm -fr $target_root_dir/*"
+	echo $cmd_rm
+	$cmd_rm
+fi
 
 for chassis in 1
 do
@@ -23,5 +27,7 @@ do
 		done
 	done
 done
+
+echo "generating tar.gz file ..."
 tar cvfz /tmp/var_log_msg.tar.gz /tmp/var_log_msg
 			
