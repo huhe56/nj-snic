@@ -22,11 +22,13 @@ if __name__ == '__main__':
         if chassis_id != 1: continue
         for cartridge_id, cartridge in chassis.iteritems():
             for server_id, server in cartridge.iteritems():
+                host_suffix = chassis_id * 100 + cartridge_id * 10 + server_id
+                if not host_suffix in sp_define.HOST_SUFFIXE_LIST: continue 
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                 sp_define.associate_service_profile(ucsm_ssh, param)
-                time.sleep(60)
+                time.sleep(120)
                 
     ucsm.exit()
     

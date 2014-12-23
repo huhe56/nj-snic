@@ -21,13 +21,14 @@ if __name__ == '__main__':
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     ucsm_ssh = ucsm.get_ssh()
     
-    initiator_ip_suffix  = 40
-    initiator_iqn_suffix = 100
+    initiator_ip_suffix  = 40+0
+    initiator_iqn_suffix = 100+0
     
     for chassis_id, chassis in sp_define.config.iteritems():
         for cartridge_id, cartridge in chassis.iteritems():
             for server_id, server in cartridge.iteritems():
-                if chassis_id != 1: continue
+                host_suffix = chassis_id * 100 + cartridge_id * 10 + server_id
+                if not host_suffix in sp_define.HOST_SUFFIXE_LIST: continue
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id

@@ -14,8 +14,8 @@ class Define():
     
     TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 159
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "141201-123017-rev200993-159"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 184
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "141221-231444-rev204380-184"
     
     UCSM_HOSTNAME   = None
     UCSM_HOSTNAME_A = None
@@ -123,8 +123,8 @@ class Define():
     URL_IMAGE_BUILD_ROOT = "http://savbu-swucs-bld3.cisco.com/elcapitan_ms-builds/"
     URL_IMAGE_LATEST_BUILD_ROOT = URL_IMAGE_BUILD_ROOT + UCSM_BUNDLE_LATEST_BUILD_REVISION + "/Images." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + "/"
     IMAGE_LIST = [
-                  "ucs-k9-bundle-infra.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.gbin",
-                  "ucs-k9-bundle-m-series.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".M.gbin"
+                  "ucs-k9-bundle-infra.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.bin",
+                  "ucs-k9-bundle-m-series.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".M.bin"
                   ]
     URL_IMAGE_LIST = [URL_IMAGE_LATEST_BUILD_ROOT + image for image in IMAGE_LIST]
     

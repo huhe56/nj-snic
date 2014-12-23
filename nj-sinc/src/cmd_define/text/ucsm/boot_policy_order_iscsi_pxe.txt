@@ -1,0 +1,22 @@
+top
+   scope org
+     enter boot-policy tag_boot_policy purpose operational
+     	 enter iscsi
+             enter path primary
+                 set iscsivnicname eth114
+             exit
+             set order 1
+         exit
+         enter lan
+             enter path primary
+                 set vnic eth10
+             exit
+             set order 2
+         exit
+         set boot-mode tag_boot_mode
+         set enforce-vnic-name no
+         set policy-owner local
+         set reboot-on-update no
+     exit
+exit
+commit-buffer

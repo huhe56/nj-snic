@@ -6,8 +6,15 @@ from lib.util import Util
 
 from cmd.ucsm.server.sp_define_config_2 import config_dict
 
-HOST_SUFFIXE_LIST = [111, 121, 122, 131, 132]
+HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 131, 132, 141, 142, 151, 152, 161, 162, 171, 172, 181, 182]
+
+
+HOST_SUFFIXE_LIST = HOST_SUFFIXE_ALL_LIST
+
 HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
+
+MEDUSA_EXECUTION_ROOT = '/root'
+MEDUSA_EXECUTION_ROOT = '/mnt'
 
 '''
 type = 1; boot lun
@@ -20,6 +27,10 @@ VLAN_PXE    = 10
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
 
+
+PATTERN_EXCLUSIVE_IN_MEDUSA = '| grep -v label | grep -v "v Retry count on error" | grep -v "O loop error event handlers:" | grep -v "exit code 0"'
+PATTERN_EGREP = 'error|fail|halt|panic'
+PATTERN_ERROR_ONLY = 'error'
 
 mgmt_ip_pool_dict = {
     1:  {
@@ -98,6 +109,7 @@ param['tag_kvm_ip_netmask'] = mgmt_ip_pool_dict[test_bed]['tag_kvm_ip_netmask']
 
 
 def create_boot_policy(ucsm_ssh, param):
+    
     param['tag_boot_policy'] = 'disk-pxe-legacy'
     param['tag_boot_mode'] = 'legacy'
     
@@ -108,6 +120,18 @@ def create_boot_policy(ucsm_ssh, param):
     param['tag_boot_mode'] = 'uefi'
     
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_disk_pxe.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    param['tag_boot_policy'] = 'iscsi-pxe-legacy'
+    param['tag_boot_mode'] = 'legacy'
+    
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_iscsi_pxe.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    param['tag_boot_policy'] = 'iscsi-pxe-uefi'
+    param['tag_boot_mode'] = 'uefi'
+    
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "boot_policy_order_iscsi_pxe.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
