@@ -20,6 +20,8 @@ if __name__ == '__main__':
     for chassis_id, chassis in sp_define.config.iteritems():
         for cartridge_id, cartridge in chassis.iteritems():
             for server_id, server in cartridge.iteritems():    
+                host_suffix = chassis_id * 100 + cartridge_id * 10 + server_id
+                if not host_suffix in sp_define.HOST_SUFFIXE_LIST: continue 
                 param['chassis_id']     = chassis_id
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id

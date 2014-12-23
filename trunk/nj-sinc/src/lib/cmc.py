@@ -19,6 +19,10 @@ class CMC:
     def exit(self):
         self._ssh.send_expect_prompt('exit')
         
+    
+    def reboot(self):
+        self._ssh.send_expect_prompt('reboot')
+        
         
     def run_cmd_step(self, file_json_step):
         Util.run_step_list(self._ssh, file_json_step)

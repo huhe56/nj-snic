@@ -7,7 +7,7 @@ Created on Aug 27, 2013
 from main.define import Define
 from lib.util import Util
 from lib.ucsm import UCSM
-from lib.cmc import CMC
+#from lib.cmc import CMC
 
 if __name__ == '__main__':
     

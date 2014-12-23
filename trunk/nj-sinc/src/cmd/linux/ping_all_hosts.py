@@ -18,7 +18,7 @@ if __name__ == '__main__':
     head_node = NodeHead(Define.NODE_HEAD_NAME, Define.NODE_DEFAULT_USERNAME)
     
     host_ip_list = sp_define.get_all_host_ip()
-    print host_ip_list
+    #print host_ip_list
     for host_ip in host_ip_list:
         if not host_ip in sp_define.HOST_LIST: continue
         status = Util.ping(head_node.get_ssh(), host_ip, 2)

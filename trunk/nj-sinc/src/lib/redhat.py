@@ -93,7 +93,7 @@ class RedHat(Base):
     
     
     def get_uptime(self):
-        self._uptime = self._ssh.send_match_list("uptime", "up [0-9] days, [0-9:\s]+,|up [min0-9:\s]+,")
+        self._uptime = self._ssh.send_match_list("uptime", "up [0-9] day[s]*, [min0-9:\s]+,|up [min0-9:\s]+,")
         return self._uptime[0]
         
     
