@@ -24,7 +24,7 @@
 		"expect":	"to cancel and exit: "
 	},
 	{
-		"cmd":		"2",
+		"cmd":		"1",
 		"expect":	"Enter the license server name or IP: "
 	},
 	{

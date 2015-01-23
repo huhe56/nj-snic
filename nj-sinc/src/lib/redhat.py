@@ -89,6 +89,8 @@ class RedHat(Base):
         
     def get_os_version(self):
         self._os_version = self._ssh.send_match_list("cat /etc/redhat-release", "[Red|Cent].*release [\d+|\.]+")
+        if len(self._os_version) == 0:
+            self._os_version = self._ssh.send_match_list("lsb_release -a", "Ubuntu [0-9.]+ LTS")
         return self._os_version[0]
     
     
@@ -99,6 +101,11 @@ class RedHat(Base):
     
     def get_snic_version(self):
         self._snic_version = self._ssh.send_match_list("modinfo -F version snic", "0\.0\.1\.\d+")
+        return self._snic_version[0]
+    
+    
+    def get_enic_version(self):
+        self._snic_version = self._ssh.send_match_list("modinfo -F version enic", "2\.1\.1\.\d+")
         return self._snic_version[0]
     
     

@@ -11,8 +11,8 @@ while :
         echo ""
 
         # reboot
-        python ../ucsm/server/all_sp_power_cycle_wait.py
-        sleep 600
+        python execute_shell_cmd.py 1
+        sleep 900
 
         # check dmesg
         python execute_shell_cmd.py 2
@@ -37,5 +37,5 @@ while :
         python execute_shell_cmd.py 7
         python execute_shell_cmd.py 8
 
-        sleep 600
+        sleep 300
     done

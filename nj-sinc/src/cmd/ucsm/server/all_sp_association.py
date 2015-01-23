@@ -28,7 +28,7 @@ if __name__ == '__main__':
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                 sp_define.associate_service_profile(ucsm_ssh, param)
-                time.sleep(120)
+                #time.sleep(10)
                 
     ucsm.exit()
     

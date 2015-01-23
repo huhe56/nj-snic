@@ -13,7 +13,7 @@ from cmd.ucsm.server import sp_define
 
 
 LUN = {
-       2: {'disk_size': 10, 'raid_level': 1},
+       2: {'disk_size': 20, 'raid_level': 1},
        }
 
 if __name__ == '__main__':
