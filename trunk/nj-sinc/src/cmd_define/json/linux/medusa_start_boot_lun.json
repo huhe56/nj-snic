@@ -8,7 +8,7 @@
 	},
 	
 	{
-		"cmd": 		"./medusa-all.sh &",
+		"cmd": 		"/mnt/cmd/medusa/sda/medusa-all.sh &",
 		"expect":	"Starting I/O threads",
 		"timeout":	15
 	},

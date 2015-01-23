@@ -8,7 +8,7 @@
 	},
 	
 	{
-		"cmd": 		"./medusa-all.sh &",
+		"cmd": 		"/mnt/cmd/medusa/sda/medusa-all.sh &",
 		"expect":	"Starting I/O threads",
 		"timeout":	15
 	},
@@ -18,11 +18,11 @@
 	},
 	
 	{
-		"cmd": 		"cd /root/tools/medusa/shell-sdb"
+		"cmd": 		"cd /data"
 	},
 	
 	{
-		"cmd": 		"./medusa-all.sh &",
+		"cmd": 		"/mnt/cmd/medusa/sdb/medusa-all.sh &",
 		"expect":	"Starting I/O threads",
 		"timeout":	15
 	},

@@ -111,6 +111,11 @@ class NodeCompute(RedHat):
         Util.run_step_list(self._ssh, file_json_step)
             
             
+    def create_data_file_system(self):
+        file_json_step = Define.PATH_SNIC_JSON_LINUX + "create_data_file_system.json"
+        Util.run_step_list(self._ssh, file_json_step)
+        
+        
     '''
     type = 1; boot lun
     type = 2; data lun

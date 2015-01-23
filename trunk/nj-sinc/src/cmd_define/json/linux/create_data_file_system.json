@@ -1,0 +1,17 @@
+[
+	{
+		"cmd":		"vgcreate vg_data /dev/sdb"
+	},
+	{
+		"cmd":		"lvcreate -l 100%FREE -n volume_data vg_data"
+	},
+	{
+		"cmd":		"mkfs.ext4 /dev/vg_data/volume_data"
+	},
+	{
+		"cmd":		"mkdir /data"
+	},
+	{
+		"cmd":		"mount /dev/vg_data/volume_data /data"
+	}
+]

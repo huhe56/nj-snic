@@ -4,12 +4,11 @@ import pprint
 from main.define import Define
 from lib.util import Util
 
-from cmd.ucsm.server.sp_define_config_2 import config_dict
+from cmd.ucsm.server.sp_define_config_6 import config_dict
 
 HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 131, 132, 141, 142, 151, 152, 161, 162, 171, 172, 181, 182]
 
-
-HOST_SUFFIXE_LIST = HOST_SUFFIXE_ALL_LIST
+HOST_SUFFIXE_LIST = [111, 112, 121, 122, 132, 142, 151, 152, 161, 162, 171, 172, 181, 182]
 
 HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
 
@@ -21,14 +20,14 @@ type = 1; boot lun
 type = 2; data lun
 type = 3; all lun
 '''
-MEDUSA_TEST_LUN_TYPE = 2
+MEDUSA_TEST_LUN_TYPE = 3
 
 VLAN_PXE    = 10
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
 
 
-PATTERN_EXCLUSIVE_IN_MEDUSA = '| grep -v label | grep -v "v Retry count on error" | grep -v "O loop error event handlers:" | grep -v "exit code 0"'
+PATTERN_EXCLUSIVE_IN_MEDUSA = '| grep -v label | grep -v "v Retry count on error" | grep -v "O loop error event handlers:" | grep -v "exit code 0" | grep -v "O Override base offset"'
 PATTERN_EGREP = 'error|fail|halt|panic'
 PATTERN_ERROR_ONLY = 'error'
 
@@ -148,22 +147,22 @@ def create_disk_group_config_policy(ucsm_ssh, param):
 def create_storage_profile(ucsm_ssh, param):
     param['tag_storage_profile_name']   = 'sp-1-lun'
     param['tag_local_lun_name_1']       = 'sp1lun_1'
-    param['tag_disk_policy_name_1']     = 'raid0striped'
+    param['tag_disk_policy_name_1']     = 'raid1mirrored'
     param['tag_order_1']  = '1'
-    param['tag_size_1']   = '40'
+    param['tag_size_1']   = '25'
     param['cmd_text_file_name'] = 'storage_profile_1_lun.txt'
     run(ucsm_ssh, param)
     
     param['tag_storage_profile_name']   = 'sp-2-lun'
     param['tag_local_lun_name_1']       = 'sp2lun_1'
-    param['tag_disk_policy_name_1']     = 'raid0striped'
+    param['tag_disk_policy_name_1']     = 'raid1mirrored'
     param['tag_expand_to_avail_1']      = 'no'
     param['tag_order_1']  = '1'
-    param['tag_size_1']   = '40'
+    param['tag_size_1']   = '25'
     param['tag_local_lun_name_2']       = 'sp2lun_2'
-    param['tag_disk_policy_name_2']     = 'raid0striped'
+    param['tag_disk_policy_name_2']     = 'raid1mirrored'
     param['tag_order_2']  = '2'
-    param['tag_size_2']   = '20'
+    param['tag_size_2']   = '15'
     param['cmd_text_file_name'] = 'storage_profile_2_lun.txt'
     run(ucsm_ssh, param)
     

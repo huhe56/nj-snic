@@ -19,13 +19,9 @@ if __name__ == '__main__':
         print '-'*30 + host_ip + '-'*30
         try:
             node = NodeCompute(host_ip)
-            snic_version = node.get_snic_version()
-            enic_version = node.get_enic_version()
-            os_version = node.get_os_version()
-            
-            print '='*20 + "; " + snic_version + "; " + enic_version + "; "+ os_version
+            node.create_data_file_system()
             node.exit()
-            result_dict[host_ip] = '; '.join([os_version, snic_version, enic_version])
+            result_dict[host_ip] = True
         except (KeyboardInterrupt, AttributeError, pexpect.TIMEOUT):
                 print "ERROR: Timeout"
                 result_dict[host_ip] = False

@@ -27,7 +27,7 @@ def run_cmd(host_ip, cmd_list, cmd_sleep):
 if __name__ == '__main__':
     
     cmd1 = "tail /root/tools/medusa/shell/host*.log"
-    cmd2 = "tail /root/tools/medusa/shell-sdb/host*.log"
+    cmd2 = "tail /data/host*.log"
     cmd_sleep = 10
     
     lun_type = sp_define.MEDUSA_TEST_LUN_TYPE
