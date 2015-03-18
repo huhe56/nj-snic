@@ -17,7 +17,11 @@ do
 			host_ip="20.200.10.$id"
 			target_dir="$target_root_dir/$host_ip"
 			mkdir -p $target_dir
-			cmd="scp root@$host_ip:/var/log/messages* $target_dir"
+            if [ "$cartridge" -eq 7 ] || [ "$cartridge" -eq 8 ]; then  
+			    cmd="scp root@$host_ip:/var/log/syslog* $target_dir"
+            else
+			    cmd="scp root@$host_ip:/var/log/message* $target_dir"
+            fi
 			echo $cmd
 			$cmd
 		done

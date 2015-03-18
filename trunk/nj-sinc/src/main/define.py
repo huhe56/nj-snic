@@ -14,8 +14,8 @@ class Define():
     
     TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 210
-    UCSM_BUNDLE_LATEST_BUILD_REVISION   = "150114-185340-rev206551-210"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 277
+    UCSM_BUNDLE_LATEST_BUILD_REVISION   = ""
     
     UCSM_HOSTNAME   = None
     UCSM_HOSTNAME_A = None
@@ -120,7 +120,8 @@ class Define():
                                }
     
     
-    URL_IMAGE_BUILD_ROOT = "http://savbu-swucs-bld3.cisco.com/elcapitan_ms-builds/"
+    URL_IMAGE_BUILD_ROOT = "https://savbu-ucs-bld30.cisco.com/ucs-b-series/elcapitan_ms-builds/"
+                    
     URL_IMAGE_LATEST_BUILD_ROOT = URL_IMAGE_BUILD_ROOT + UCSM_BUNDLE_LATEST_BUILD_REVISION + "/Images." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + "/"
     IMAGE_LIST = [
                   "ucs-k9-bundle-infra.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.bin",
@@ -132,9 +133,10 @@ class Define():
     CMD_SCP_IMAGE_ROOT = "scp://" + NODE_DEFAULT_USERNAME + "@" + NODE_HEAD_NAME + "/" + PATH_DOWNLOADS + "/"
     CMD_SCP_IMAGE_LIST = [CMD_SCP_IMAGE_ROOT + image for image in IMAGE_LIST ]
     
-    CDEST_HUHE_PASSWORD = "he100he"
-    URL_NODE_CDETS_TECH_SUPPORT = "huhe@10.193.175.2:/net/savbu-da01/qa/cdets/huhe/temp-tech-support"
-    URL_UCSM_CDETS_TECH_SUPPORT = "scp://huhe@10.193.175.2/net/savbu-da01/qa/cdets/huhe/temp-tech-support"
+    CDEST_HUHE_PASSWORD = "huanhe56"
+    CEC_HUHE_PASSWORD   = "he100he"
+    URL_NODE_CDETS_TECH_SUPPORT = "huhe@10.193.221.245:/home/huhe/tech-support"
+    URL_UCSM_CDETS_TECH_SUPPORT = "scp://huhe@10.193.221.245/home/huhe/tech-support"
     
     
     VNIC_POLICY_TYPE_QOS                = "qos-policy"

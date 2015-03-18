@@ -5,11 +5,10 @@ while :
         i=$(($i+1))
         echo ""
         echo ""
-        echo "===============*************** $i ***************==============="
+        echo "===============--------------- $i ---------------==============="
         echo ""
         date
-        echo ""
-        python reboot_cmc.py
+        python run_shell_cmd.py dstat 5 2
         sleep 600
     done
 

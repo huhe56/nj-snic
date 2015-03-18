@@ -4,11 +4,11 @@ import pprint
 from main.define import Define
 from lib.util import Util
 
-from cmd.ucsm.server.sp_define_config_6 import config_dict
+from cmd.ucsm.server.sp_define_config_4 import config_dict
 
 HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 131, 132, 141, 142, 151, 152, 161, 162, 171, 172, 181, 182]
 
-HOST_SUFFIXE_LIST = [111, 112, 121, 122, 132, 142, 151, 152, 161, 162, 171, 172, 181, 182]
+HOST_SUFFIXE_LIST = HOST_SUFFIXE_ALL_LIST
 
 HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
 
@@ -149,7 +149,7 @@ def create_storage_profile(ucsm_ssh, param):
     param['tag_local_lun_name_1']       = 'sp1lun_1'
     param['tag_disk_policy_name_1']     = 'raid1mirrored'
     param['tag_order_1']  = '1'
-    param['tag_size_1']   = '25'
+    param['tag_size_1']   = '15'
     param['cmd_text_file_name'] = 'storage_profile_1_lun.txt'
     run(ucsm_ssh, param)
     
@@ -158,7 +158,7 @@ def create_storage_profile(ucsm_ssh, param):
     param['tag_disk_policy_name_1']     = 'raid1mirrored'
     param['tag_expand_to_avail_1']      = 'no'
     param['tag_order_1']  = '1'
-    param['tag_size_1']   = '25'
+    param['tag_size_1']   = '40'
     param['tag_local_lun_name_2']       = 'sp2lun_2'
     param['tag_disk_policy_name_2']     = 'raid1mirrored'
     param['tag_order_2']  = '2'
@@ -252,6 +252,20 @@ def create_lun_in_service_profile(ucsm_ssh, param, lun):
         param['tag_local_lun'] = ''.join(['lun', chassis, cartridge, server]) + '_' + str(lun_order)    
         file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_storage_lun.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)
+        
+        
+def set_vnic_mtu_in_service_profile(ucsm_ssh, param, mtu_dict):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    
+    for eth_name, mtu in mtu_dict.iteritems():
+        param['tag_eth_name'] = eth_name
+        param['tag_mtu'] = str(mtu)
+        file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_vnic_mtu.txt"   
+        Util.run_text_step(ucsm_ssh, file_text_step, param)
     
 
 def create_storage_profile_in_service_profile(ucsm_ssh, param, storage_profile):
@@ -331,6 +345,19 @@ def disassociate_service_profile(ucsm_ssh, param):
     param['tag_server_full_id'] = '/'.join(server_full_list)
     
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_dis_association.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def create_ssh_sol_in_service_profile(ucsm_ssh, param):
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    
+    server_full_list = [chassis, cartridge, server]
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    param['tag_server_full_id'] = '/'.join(server_full_list)
+    
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_ssh_sol.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
