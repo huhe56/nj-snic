@@ -14,7 +14,7 @@ from lib.ucsm import UCSM
 
 if __name__ == '__main__':
     
-    download = True
+    download = False
     
     if download:
         head_node = NodeHead(Define.NODE_HEAD_NAME, Define.NODE_DEFAULT_USERNAME)

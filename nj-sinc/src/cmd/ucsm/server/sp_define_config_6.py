@@ -18,7 +18,7 @@ BOOT_POLICY_UEFI_ISCSI      = 'iscsi-pxe-uefi'
 BOOT_POLICY_1   = BOOT_POLICY_LEGACY_PXE
 BOOT_POLICY_2   = BOOT_POLICY_UEFI_PXE
 
-ETH_CNT = 6
+ETH_CNT = 8
 
 config_dict = {
     # test bed 3
@@ -75,25 +75,25 @@ config_dict = {
             },
             5: {
                 1: {
-                       'storage_profile': SP_NAME_1,
+    
                        'boot_policy': BOOT_POLICY_LEGACY_ISCSI,
                        'eth_cnt': ETH_CNT
                 },
                 2:  {
-                       'storage_profile': SP_NAME_2,
-                       'boot_policy': BOOT_POLICY_UEFI_ISCSI,
+                       
+                       'boot_policy': BOOT_POLICY_LEGACY_ISCSI,
                        'eth_cnt': ETH_CNT
                 }
             },
             6: {
                 1: {
-                       'storage_profile': SP_NAME_1,
+                       
                        'boot_policy': BOOT_POLICY_LEGACY_ISCSI,
                        'eth_cnt': ETH_CNT
                 },
                 2:  {
-                       'storage_profile': SP_NAME_2,
-                       'boot_policy': BOOT_POLICY_UEFI_ISCSI,
+                       
+                       'boot_policy': BOOT_POLICY_LEGACY_ISCSI,
                        'eth_cnt': ETH_CNT
                 }
             },

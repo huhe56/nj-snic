@@ -4,24 +4,30 @@ Created on Aug 26, 2014
 @author: huhe
 '''
 
-import time
-import pprint
 
 from main.define import Define
 from lib.ucsm import UCSM
 from cmd.ucsm.server import sp_define
 
 
-LUN = {
-       2: {'disk_size': 15, 'raid_level': 1},
+MTU9K = 9000
+MTU1K = 1500
+MTU = MTU1K
+MTU_DICT = {
+       'eth10':     MTU,
+       'eth2000':   MTU,
+       'eth114':    MTU,
+       'eth323':    MTU,
+       'eth324':    MTU,
+       'eth325':    MTU,
+       'eth326':    MTU,
+       'eth327':    MTU
        }
 
 if __name__ == '__main__':
     
     param  = sp_define.param
-    
-    #pprint.pprint(sp_define.config)
-    
+        
     ucsm = UCSM(Define.UCSM_HOSTNAME);
     ucsm_ssh = ucsm.get_ssh()
     
@@ -34,7 +40,7 @@ if __name__ == '__main__':
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                     
-                sp_define.create_lun_in_service_profile(ucsm_ssh, param, LUN)
+                sp_define.set_vnic_mtu_in_service_profile(ucsm_ssh, param, MTU_DICT)
                 
     ucsm.exit()
     

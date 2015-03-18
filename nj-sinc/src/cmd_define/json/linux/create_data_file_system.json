@@ -1,5 +1,8 @@
 [
 	{
+		"cmd":		"pvcreate -y -ff /dev/sdb"
+	},
+	{
 		"cmd":		"vgcreate vg_data /dev/sdb"
 	},
 	{

@@ -1,0 +1,8 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         set bios-policy ssh_sol
+         set sol-policy ssh_sol
+     exit
+  exit
+  commit-buffer

@@ -14,9 +14,9 @@ BOOT_POLICY_LEGACY  = 'disk-pxe-legacy'
 BOOT_POLICY_UEFI    = 'disk-pxe-uefi'
 
 BOOT_POLICY_1   = BOOT_POLICY_LEGACY
-BOOT_POLICY_2   = BOOT_POLICY_LEGACY
+BOOT_POLICY_2   = BOOT_POLICY_UEFI
 
-ETH_CNT = 4
+ETH_CNT = 8
 
 config_dict = {
     # test bed 3
