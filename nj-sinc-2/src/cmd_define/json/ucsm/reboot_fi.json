@@ -1,0 +1,20 @@
+[
+	{
+		"cmd": 	"top"
+	},
+	
+	{
+		"cmd": 	"connect local-mgmt"
+	},
+	
+	{
+		"cmd": 		"reboot",
+		"expect": 	"yes/no"
+	},
+	
+	{
+		"cmd": 		"yes",
+		"expect": 	"All shells being terminated due to system"
+	}
+	
+]

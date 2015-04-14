@@ -1,0 +1,18 @@
+[
+	{
+		"cmd": 		""
+	},
+	
+	{
+		"cmd": 		"killall medusa-all.sh"
+	},
+	
+	
+	{
+		"cmd": 		"killall maim"
+	},
+	
+	{
+		"cmd": 		""
+	}
+]

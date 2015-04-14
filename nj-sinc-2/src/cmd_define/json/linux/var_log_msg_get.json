@@ -1,0 +1,8 @@
+[
+	{
+		"cmd": 		"mkdir /tmp/var_log_msg/tag_host_ip"
+	},
+	{
+		"cmd": 		"scp root@tag_host_ip:/var/log/messages* /tmp/var_log_msg/tag_host_ip"
+	}
+]

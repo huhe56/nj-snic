@@ -1,0 +1,8 @@
+[
+	{
+		"cmd": 		"rm -fr /tmp/var_log_msg"
+	},
+	{
+		"cmd": 		"mkdir /tmp/var_log_msg"
+	}
+]

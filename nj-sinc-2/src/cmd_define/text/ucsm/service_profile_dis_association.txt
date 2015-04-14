@@ -1,0 +1,7 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         disassociate
+     exit
+  exit
+  commit-buffer
