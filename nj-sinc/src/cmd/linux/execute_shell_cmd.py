@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 "ps -ef | grep iperf | grep -v grep",
                 'service iptables stop', 
                 
-                '/bin/rm -fr /data/* /root/tools/iperf/*.log ' + medusa_log_directory_boot_lun + '* ' + medusa_log_directory_data_lun + '*',
+                '/bin/rm -fr /root/tools/iperf/*.log ' + medusa_log_directory_boot_lun + '* ' + medusa_log_directory_data_lun + '*',
                 '/bin/rm -fr /var/log/messages-* /var/log/syslog.*',
                 'ls -lt /data; cd /data; df . -H',
                 'egrep -i "call trace" /var/log/messages* /var/log/syslog*',
@@ -48,7 +48,7 @@ if __name__ == '__main__':
                 #"sed -i 's/IPV6INIT=no/IPV6INIT=\\\"no\\\"/' /etc/sysconfig/network-scripts/ifcfg-eth4-tmp",
                 #"echo IPADDR=\\\"20.3.25.$$host_suffix$$\\\" >> /etc/sysconfig/network-scripts/ifcfg-eth4-tmp",
                 #"echo NETMASK=\\\"255.255.255.0\\\" >> /etc/sysconfig/network-scripts/ifcfg-eth4-tmp",
-                "egrep -i '" + sp_define.PATTERN_ERROR_ONLY + "|fail|halt|panic|call trace' /var/log/messages* /var/log/syslog* | grep -v real_update_permanent_hw_address | grep -v ERST | grep -v systemd-fsck | grep -v re-mounted | grep -v bluetooth | grep -v gdm-simple-slave | grep -v NetworkManager | grep -v gnome | grep -v 'module verification failed' | grep -v systemd",
+                "egrep -i '" + sp_define.PATTERN_ERROR_ONLY + "|fail|halt|panic|call trace' /var/log/messages* /var/log/syslog* | grep -v real_update_permanent_hw_address | grep -v ERST | grep -v systemd-fsck | grep -v re-mounted | grep -v bluetooth | grep -v gdm-simple-slave | grep -v NetworkManager | grep -v gnome | grep -v 'module verification failed' | grep -v systemd | grep -v 'starting userspace STP failed' | grep -v virGetHostname | grep -v dbus | grep -v 'registered panic notifier'",
                 "egrep -i '" + sp_define.PATTERN_EGREP + "' " + medusa_log_directory_root + "*/*.log " + sp_define.PATTERN_EXCLUSIVE_IN_MEDUSA,
                 "egrep -i '" + sp_define.PATTERN_EGREP + "' " + medusa_log_directory_root + "*/*/*.log " + sp_define.PATTERN_EXCLUSIVE_IN_MEDUSA,
                 #"egrep -i 'Data corruption detected' /root/tools/medusa/*/*/*.log",
@@ -64,7 +64,8 @@ if __name__ == '__main__':
                 #'find /mnt -name *.bad -print',
                 "cd /root/tools/iperf; /mnt/cmd/shell/iperf_server.sh",                
                 "cd /root/tools/iperf; /mnt/cmd/shell/iperf_client.sh",
-                "cd /root/tools/iperf; tail client*.log; sleep 5; tail client*.log",
+                "cd /root/tools/iperf; tail client*.log; sleep 10; tail client*.log",
+                "egrep -i '" + sp_define.PATTERN_EGREP + "' /root/tools/iperf/*.log "
                 #"killall iperf",
                 #"sh /mnt/cmd/shell/ssh-sol-rhel65.sh",
                 #'cd /root/tools/dd; ./dd_loop.sh &> test_dd.log &',

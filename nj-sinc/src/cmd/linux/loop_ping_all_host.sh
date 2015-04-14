@@ -8,7 +8,7 @@ while :
         echo "===============--------------- $i ---------------==============="
         echo ""
         date
-        sleep 400
         python ping_all_hosts.py
+        sleep 120
     done
 

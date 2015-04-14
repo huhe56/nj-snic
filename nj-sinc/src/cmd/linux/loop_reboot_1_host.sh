@@ -7,7 +7,7 @@ while :
         i=$(($i+1))
         echo "=============== $i ==============="
         date
-        python execute_shell_cmd.py 17
+        python execute_shell_cmd.py 1
         sleep 120
     done
 

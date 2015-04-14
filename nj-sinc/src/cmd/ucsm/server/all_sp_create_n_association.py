@@ -56,6 +56,9 @@ if __name__ == '__main__':
                     param['tag_initiator_iqn_suffix'] = str(initiator_iqn_suffix)
                     sp_define.create_iscsi_in_service_profile(ucsm_ssh, param)
                 
+                sp_define.create_ssh_sol_in_service_profile(ucsm_ssh, param)
+                sp_define.create_ipmi_in_service_profile(ucsm_ssh, param)
+                
                 #sp_define.associate_service_profile(ucsm_ssh, param)
                 #time.sleep(300)
                 

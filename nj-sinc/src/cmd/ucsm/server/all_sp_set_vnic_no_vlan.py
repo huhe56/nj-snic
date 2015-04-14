@@ -10,19 +10,11 @@ from lib.ucsm import UCSM
 from cmd.ucsm.server import sp_define
 
 
-MTU9K = 9000
-MTU1K = 1500
-MTU = MTU1K
-MTU_DICT = {
-       'eth20':     MTU,
-       'eth2000':   MTU,
-       'eth114':    MTU,
-       'eth323':    MTU,
-       'eth324':    MTU,
-       'eth325':    MTU,
-       'eth326':    MTU,
-       'eth327':    MTU
-       }
+
+ETH_IF_VLAN_NUMBER_LIST = [x for x in range(323, 328)]
+ETH_IF_VLAN_NUMBER_LIST = []
+ETH_IF_VLAN_NUMBER_LIST.append(2000)
+ETH_IF_VLAN_NUMBER_LIST.append(114)
 
 if __name__ == '__main__':
     
@@ -40,7 +32,7 @@ if __name__ == '__main__':
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                     
-                sp_define.set_vnic_mtu_in_service_profile(ucsm_ssh, param, MTU_DICT)
+                sp_define.set_vnic_no_vlan_in_service_profile(ucsm_ssh, param, ETH_IF_VLAN_NUMBER_LIST)
                 
     ucsm.exit()
     
