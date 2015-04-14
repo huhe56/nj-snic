@@ -1,9 +1,0 @@
-top
-   scope org
-     enter service-profile tag_service_profile_name
-         enter vnic tag_eth_name 
-             set mtu tag_mtu
-         exit
-     exit
-  exit
-  commit-buffer
