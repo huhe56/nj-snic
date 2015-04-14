@@ -8,7 +8,7 @@ from cmd.ucsm.server.sp_define_config_4 import config_dict
 
 HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 131, 132, 141, 142, 151, 152, 161, 162, 171, 172, 181, 182]
 
-HOST_SUFFIXE_LIST = HOST_SUFFIXE_ALL_LIST
+HOST_SUFFIXE_LIST = [111, 112, 121, 122, 131, 132, 141, 142]
 
 HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
 
@@ -22,7 +22,7 @@ type = 3; all lun
 '''
 MEDUSA_TEST_LUN_TYPE = 3
 
-VLAN_PXE    = 10
+VLAN_PXE    = 20
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
 
@@ -267,6 +267,20 @@ def set_vnic_mtu_in_service_profile(ucsm_ssh, param, mtu_dict):
         file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_vnic_mtu.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)
     
+    
+def set_vnic_no_vlan_in_service_profile(ucsm_ssh, param, vlan_number_list):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    
+    for vlan_number in vlan_number_list:
+        param['tag_eth_name'] = 'eth' + str(vlan_number)
+        param['tag_vlan_name'] = 'vlan' + str(vlan_number)
+        file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_vnic_no_vlan.txt"   
+        Util.run_text_step(ucsm_ssh, file_text_step, param)
+        
 
 def create_storage_profile_in_service_profile(ucsm_ssh, param, storage_profile):
     test_bed = str(param['test_bed_id'])
@@ -358,6 +372,19 @@ def create_ssh_sol_in_service_profile(ucsm_ssh, param):
     param['tag_server_full_id'] = '/'.join(server_full_list)
     
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_ssh_sol.txt"   
+    Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def create_ipmi_in_service_profile(ucsm_ssh, param):
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    
+    server_full_list = [chassis, cartridge, server]
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    param['tag_server_full_id'] = '/'.join(server_full_list)
+    
+    file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_ipmi.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     

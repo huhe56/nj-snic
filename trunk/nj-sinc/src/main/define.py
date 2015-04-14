@@ -14,7 +14,7 @@ class Define():
     
     TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = 277
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = "34"
     UCSM_BUNDLE_LATEST_BUILD_REVISION   = ""
     
     UCSM_HOSTNAME   = None
@@ -124,8 +124,8 @@ class Define():
                     
     URL_IMAGE_LATEST_BUILD_ROOT = URL_IMAGE_BUILD_ROOT + UCSM_BUNDLE_LATEST_BUILD_REVISION + "/Images." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + "/"
     IMAGE_LIST = [
-                  "ucs-k9-bundle-infra.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.bin",
-                  "ucs-k9-bundle-m-series.2.5.0." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".M.bin"
+                  "ucs-k9-bundle-infra.2.5.1." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".A.gbin",
+                  "ucs-k9-bundle-m-series.2.5.1." + str(UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ".M.gbin"
                   ]
     URL_IMAGE_LIST = [URL_IMAGE_LATEST_BUILD_ROOT + image for image in IMAGE_LIST]
     
@@ -133,8 +133,8 @@ class Define():
     CMD_SCP_IMAGE_ROOT = "scp://" + NODE_DEFAULT_USERNAME + "@" + NODE_HEAD_NAME + "/" + PATH_DOWNLOADS + "/"
     CMD_SCP_IMAGE_LIST = [CMD_SCP_IMAGE_ROOT + image for image in IMAGE_LIST ]
     
-    CDEST_HUHE_PASSWORD = "huanhe56"
-    CEC_HUHE_PASSWORD   = "he100he"
+    CDEST_HUHE_PASSWORD = "xxxxxxxx"
+    CEC_HUHE_PASSWORD   = "xxxxxxxx"
     URL_NODE_CDETS_TECH_SUPPORT = "huhe@10.193.221.245:/home/huhe/tech-support"
     URL_UCSM_CDETS_TECH_SUPPORT = "scp://huhe@10.193.221.245/home/huhe/tech-support"
     

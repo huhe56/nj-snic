@@ -37,7 +37,7 @@ if __name__ == '__main__':
     ssh.send_expect_prompt("top")
     ssh.send_expect_prompt("scope firmware")
     ssh.send_expect_prompt("scope auto-install")
-    ssh.send("install infra infra-vers 2.5(0." + str(Define.UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ")A")
+    ssh.send("install infra infra-vers 2.5(1." + str(Define.UCSM_BUNDLE_LATEST_BUILD_NUMBER) + ")A")
     ssh.expect("yes\/no\):")
     ssh.send_expect_prompt("yes")
     ssh.exit()

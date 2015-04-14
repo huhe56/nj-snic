@@ -12,7 +12,7 @@ while :
 
         # reboot
         python execute_shell_cmd.py 1
-        sleep 600
+        sleep 300
 
         # check dmesg
         python execute_shell_cmd.py 2
@@ -41,5 +41,5 @@ while :
         python execute_shell_cmd.py 8
         python execute_shell_cmd.py 7
 
-        sleep 600
+        sleep 300
     done
