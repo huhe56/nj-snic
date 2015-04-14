@@ -1,0 +1,13 @@
+scope org
+	enter eth-policy tag_eth_policy_name
+		commit-buffer
+		set trans-queue count 			tag_trans_queue_count
+		set trans-queue ring-size  		tag_trans_queue_ring_size
+		set recv-queue count  			tag_recv_queue_count
+		set recv-queue ring-size  		tag_recv_queue_ring_size
+		set comp-queue count  			tag_comp_queue_count
+		set failback timeout			tag_failback_timeout
+		set interrupt count				tag_interrupt_count
+		set interrupt coalescing-time	tag_interrupt_coalescing_time
+		commit-buffer
+	exit

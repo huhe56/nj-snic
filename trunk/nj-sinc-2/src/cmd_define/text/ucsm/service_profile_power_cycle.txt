@@ -1,0 +1,7 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         cycle cycle-tag_power_cycle_timing
+     exit
+  exit
+  commit-buffer

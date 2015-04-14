@@ -1,0 +1,11 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name instance
+         set boot-policy tag_boot_policy
+         set local-disk-policy default
+         set identity dynamic-uuid tag_uuid
+         localize
+         set remote-resolution yes
+     exit
+  exit
+  commit-buffer
