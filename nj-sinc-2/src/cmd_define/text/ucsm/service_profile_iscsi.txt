@@ -1,0 +1,31 @@
+
+scope org
+	scope service-profile tag_service_profile_name
+		set boot-policy tag_boot_policy
+		commit
+		enter vnic-iscsi eth114
+			set overlay-vnic-name eth114
+			set iscsi-identity initiator-name iqn.1994-05.com.redhat:700301:huhe:tag_initiator_iqn_suffix
+			enter eth-if 
+				set vlanname vlan114
+				enter ip-if
+					enter static-ip-params
+						set addr 50.1.114.tag_initiator_ip_suffix
+						set subnet 255.255.255.0
+						commit
+					exit
+				exit
+				enter static-target-if 1
+					set ipaddress 50.1.114.201
+					set name iqn.1992-08.com.netapp:sn.2014218401
+					set port 3260
+					enter lun 
+						set id 0
+						commit
+					exit
+				exit
+			exit
+		exit
+		commit
+	exit			
+		

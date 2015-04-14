@@ -1,0 +1,9 @@
+[
+	{
+		"cmd":		"gentechsupportdata 1.1.1.1 /tmp/tech.tgz",
+		"expect": 	"Generating adapter tech-support archive...."
+	},
+	{
+		"cmd":	"tftp -v -m binary 127.3.0.254 -c put /tmp/tech.tgz /root/tech.tgz"
+	}
+]

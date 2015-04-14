@@ -1,0 +1,13 @@
+top
+	scope org
+		scope service-profile tag_service_profile_name
+			disassociate
+			commit-buffer
+			scope storage-profile-def
+				delete local-lun tag_local_lun_name
+				commit-buffer
+			exit
+		exit
+	exit
+	commit-buffer
+	

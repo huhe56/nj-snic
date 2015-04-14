@@ -1,0 +1,7 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         set ipmi-access-profile nj-ipmi
+     exit
+  exit
+  commit-buffer

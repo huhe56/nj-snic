@@ -1,0 +1,11 @@
+top
+   scope org
+     enter bios-policy ssh_sol
+		set serial-port-a-config serial-port-a enabled 
+		set console-redir-config baud-rate 115200
+		set console-redir-config console-redir serial-port-a
+		set console-redir-config legacy-os-redir enabled 
+		set console-redir-config terminal-type vt100-plus     	 
+     exit
+exit
+commit-buffer

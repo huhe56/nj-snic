@@ -1,0 +1,98 @@
+[
+	
+	{
+		"comment": "FI a+b: 1/1 -> server port",
+		"cmd": 	"top"
+	},
+	{
+		"cmd": 	"scope eth-server"
+	},
+	{
+		"cmd": 	"scope fabric a"
+	},
+	{
+		"cmd": 	"enter interface 1 1"
+	},
+	{
+		"cmd": 	"enable"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	
+	{
+		"cmd": 	"scope fabric b"
+	},
+	{
+		"cmd": 	"enter interface 1 1"
+	},
+	{
+		"cmd": 	"enable"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	
+	{
+		"comment": "vlan 10; FI a+b: 1/32 -> uplink",
+		"cmd": 	"top"
+	},
+	{
+		"cmd": 	"scope eth-uplink"
+	},
+	{
+		"cmd":	"enter vlan vlan10 10"
+	},
+	{
+		"cmd":	"set vlan-id 10"
+	},
+	{
+		"cmd":	"exit"
+	},
+	{
+		"cmd": 	"scope fabric a"
+	},
+	{
+		"cmd": 	"enter interface 1 32"
+	},
+	{
+		"cmd": 	"enable"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	
+	{
+		"cmd": 	"scope fabric b"
+	},
+	{
+		"cmd": 	"enter interface 1 32"
+	},
+	{
+		"cmd": 	"enable"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": 	"exit"
+	},
+	{
+		"cmd": "commit-buffer"
+	}
+]

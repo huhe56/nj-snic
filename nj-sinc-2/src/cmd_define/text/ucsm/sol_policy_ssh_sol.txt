@@ -1,0 +1,8 @@
+top
+   scope org
+		enter sol-policy ssh_sol
+			enable 
+			set speed 115200
+		exit
+exit
+commit-buffer
