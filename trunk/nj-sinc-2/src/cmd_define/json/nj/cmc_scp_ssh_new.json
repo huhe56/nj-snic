@@ -1,0 +1,14 @@
+[
+	{
+		"cmd":		"scp /root/tech.tgz huhe@10.193.175.2:/net/savbu-da01/qa/cdets/huhe/ddts/nj",
+		"expect": 	"yes\\/no\\)\\? "
+	},
+	{
+		"cmd":		"yes",
+		"expect": 	"password: "
+	},
+	{
+		"cmd":		"he100he",
+		"expect": 	"cmc#"
+	}
+]

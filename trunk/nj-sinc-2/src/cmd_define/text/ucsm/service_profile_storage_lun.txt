@@ -1,0 +1,13 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         enter storage-profile-def
+             enter local-lun tag_local_lun
+                 set disk-policy-name tag_disk_group_config_policy_name
+                 set size tag_disk_size
+                 set order tag_lun_order
+             exit
+         exit
+     exit
+  exit
+ commit-buffer

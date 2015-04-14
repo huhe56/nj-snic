@@ -1,0 +1,27 @@
+[
+	{
+		"cmd": 	"top"
+	},
+	
+	{
+		"cmd": 	"connect local-mgmt"
+	},
+	
+	{
+		"cmd":		"copy workspace:/techsupport/ssh_new.tar $Define.URL_UCSM_CDETS_TECH_SUPPORT",
+		"expect":	"yes\\/no\\)\\?"
+	},
+	
+	{
+		"cmd":		"yes",
+		"expect":	"password"
+	},
+	
+	{
+		"cmd":		"$Define.CDEST_HUHE_PASSWORD"
+	},
+	
+	{
+		"cmd":		"exit"
+	}
+]

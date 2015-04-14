@@ -1,0 +1,46 @@
+top
+scope eth-server
+     scope fabric a
+         enter interface 1 1
+             enable
+         exit
+         enter interface 1 2
+             enable
+         exit
+         enter interface 1 3
+             enable
+         exit
+         enter interface 1 4
+             enable
+         exit
+     exit
+     scope fabric b
+         enter interface 1 1
+             enable
+         exit
+         enter interface 1 2
+             enable
+         exit
+         enter interface 1 3
+             enable
+         exit
+         enter interface 1 4
+             enable
+         exit
+     exit
+exit
+
+scope eth-uplink
+     scope fabric a
+         enter interface 1 32
+             enable
+         exit
+     exit
+     scope fabric b
+         enter interface 1 32
+             enable
+         exit
+     exit
+ exit
+ commit-buffer
+ 
