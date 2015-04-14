@@ -1,7 +1,0 @@
-top
-   scope org
-     enter ip-pool tag_kvm_ip_pool_name
-     	 create block tag_kvm_ip_start tag_kvm_ip_end tag_kvm_ip_gateway tag_kvm_ip_netmask
-     exit
-   exit
-commit-buffer

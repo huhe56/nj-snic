@@ -1,7 +1,0 @@
-top
-   scope org
-     enter service-profile tag_service_profile_name
-         set storage-profile-name tag_storage_profile_name
-     exit
-  exit
- commit-buffer

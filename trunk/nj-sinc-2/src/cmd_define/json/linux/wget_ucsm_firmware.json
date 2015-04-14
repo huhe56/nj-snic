@@ -1,7 +1,0 @@
-[
-	{
-		"cmd":		"wget --no-check-certificate $Define.URL_IMAGE_LIST[$i] -P $Define.PATH_DOWNLOADS",
-		"for":		2,
-		"timeout":	60
-	}
-]

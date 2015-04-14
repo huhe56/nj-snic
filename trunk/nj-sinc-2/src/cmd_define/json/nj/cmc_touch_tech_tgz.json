@@ -1,8 +1,0 @@
-[
-	{
-		"cmd":	"touch /root/tech.tgz"
-	},
-	{
-		"cmd":	"chmod 666 /root/tech.tgz"
-	}
-]

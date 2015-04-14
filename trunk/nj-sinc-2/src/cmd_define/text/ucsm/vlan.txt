@@ -1,7 +1,0 @@
-top
-scope org
-	scope eth-uplink
-     	enter vlan tag_vlan_name  tag_vlan_id
-     	exit
- 	exit
- commit-buffer

@@ -1,5 +1,0 @@
-top
-   scope org
-     delete service-profile tag_service_profile_name
-   exit
-   commit-buffer
