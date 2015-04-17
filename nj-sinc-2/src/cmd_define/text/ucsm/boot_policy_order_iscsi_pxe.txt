@@ -9,7 +9,7 @@ top
          exit
          enter lan
              enter path primary
-                 set vnic eth10
+                 set vnic eth01
              exit
              set order 2
          exit

@@ -1,0 +1,29 @@
+[
+	{
+		"cmd": 	"scope org"
+	},
+	{
+		"cmd": 	"enter ipmi-access-profile nj-ipmi"
+	},
+	{
+		"cmd": 	"create ipmi-user admin"
+	},
+	{
+		"cmd": 		"set password",
+		"expect": 	"Enter a password:"
+	},
+	{
+		"cmd": 		"nbv12345",
+		"expect":	"Confirm the password:"
+	},
+	{
+		"cmd": 	"nbv12345"
+	},
+	
+	{
+		"cmd": 	"commit-buffer"
+	},
+	{
+		"cmd": 	"end"
+	}
+]
