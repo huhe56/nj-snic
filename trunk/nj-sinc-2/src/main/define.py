@@ -14,8 +14,12 @@ class Define():
     
     TEST_BED = 3
     
-    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = "34"
+    UCSM_BUNDLE_LATEST_BUILD_NUMBER     = "37"
     UCSM_BUNDLE_LATEST_BUILD_REVISION   = ""
+    
+    VLAN_MGMT = [20, 21, 22, 23, 24, 114, 2000]
+    VLAN_VM   = [10, 20, 2000, 101, 102, 103, 104]
+    VLAN_STANDALONE = [10, 20, 2000, 114]
     
     UCSM_HOSTNAME   = None
     UCSM_HOSTNAME_A = None
@@ -72,6 +76,11 @@ class Define():
     UCSM_DEFAULT_USERNAME   = 'admin'
     UCSM_DEFAULT_PASSWORD   = 'nbv12345'
 
+    RAR_HOSTNAME = 'savbu-qa-rar-646'
+    RAR_USERNAME = 'admin'
+    RAR_PASSWORD = 'raritan'
+    RAR_CHASSIS_OUTLET_ID = '2'
+
     TIMEOUT_SSH         = 15
     PATTERN_SSH_NEW_KEY = '(?i)are you sure you want to continue connecting'
     PATTERN_PASSWORD    = '(?i)password'
@@ -80,6 +89,7 @@ class Define():
     TIMEOUT_COMMIT = 60
     
     PATTERN_NEW_LINE    = "\r\n"
+    
 
     SNIC_STATS_ERROR_LIST = [
                              'IOs Failed',
@@ -133,7 +143,7 @@ class Define():
     CMD_SCP_IMAGE_ROOT = "scp://" + NODE_DEFAULT_USERNAME + "@" + NODE_HEAD_NAME + "/" + PATH_DOWNLOADS + "/"
     CMD_SCP_IMAGE_LIST = [CMD_SCP_IMAGE_ROOT + image for image in IMAGE_LIST ]
     
-    CDEST_HUHE_PASSWORD = "xxxxxxxx"
+    CDEST_HUHE_PASSWORD = "huanhe56"
     CEC_HUHE_PASSWORD   = "xxxxxxxx"
     URL_NODE_CDETS_TECH_SUPPORT = "huhe@10.193.221.245:/home/huhe/tech-support"
     URL_UCSM_CDETS_TECH_SUPPORT = "scp://huhe@10.193.221.245/home/huhe/tech-support"

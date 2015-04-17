@@ -4,11 +4,14 @@ import pprint
 from main.define import Define
 from lib.util import Util
 
-from cmd.ucsm.server.sp_define_config_4 import config_dict
+from cmd.ucsm.server.sp_define_config_7 import config_dict
 
-HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 131, 132, 141, 142, 151, 152, 161, 162, 171, 172, 181, 182]
+HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 151, 171]
 
-HOST_SUFFIXE_LIST = [111, 112, 121, 122, 131, 132, 141, 142]
+HOST_SUFFIXE_LIST = [171]
+
+
+
 
 HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
 
@@ -26,6 +29,8 @@ VLAN_PXE    = 20
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
 
+HOST_HYPERV_LIST = [121, 122, 171]
+HOST_NEWARD_LIST = [151, 171]
 
 PATTERN_EXCLUSIVE_IN_MEDUSA = '| grep -v label | grep -v "v Retry count on error" | grep -v "O loop error event handlers:" | grep -v "exit code 0" | grep -v "O Override base offset"'
 PATTERN_EGREP = 'error|fail|halt|panic'
@@ -145,25 +150,50 @@ def create_disk_group_config_policy(ucsm_ssh, param):
     
     
 def create_storage_profile(ucsm_ssh, param):
+    
+    #disk_policy_name = 'raid0striped'
+    disk_policy_name = 'raid1mirrored'
+    
     param['tag_storage_profile_name']   = 'sp-1-lun'
     param['tag_local_lun_name_1']       = 'sp1lun_1'
-    param['tag_disk_policy_name_1']     = 'raid1mirrored'
+    param['tag_disk_policy_name_1']     = disk_policy_name
     param['tag_order_1']  = '1'
-    param['tag_size_1']   = '15'
+    param['tag_size_1']   = '50'
     param['cmd_text_file_name'] = 'storage_profile_1_lun.txt'
     run(ucsm_ssh, param)
     
     param['tag_storage_profile_name']   = 'sp-2-lun'
     param['tag_local_lun_name_1']       = 'sp2lun_1'
-    param['tag_disk_policy_name_1']     = 'raid1mirrored'
+    param['tag_disk_policy_name_1']     = disk_policy_name
     param['tag_expand_to_avail_1']      = 'no'
     param['tag_order_1']  = '1'
-    param['tag_size_1']   = '40'
+    param['tag_size_1']   = '50'
     param['tag_local_lun_name_2']       = 'sp2lun_2'
-    param['tag_disk_policy_name_2']     = 'raid1mirrored'
+    param['tag_disk_policy_name_2']     = disk_policy_name
     param['tag_order_2']  = '2'
-    param['tag_size_2']   = '15'
+    param['tag_size_2']   = '10'
     param['cmd_text_file_name'] = 'storage_profile_2_lun.txt'
+    run(ucsm_ssh, param)
+    
+    param['tag_storage_profile_name']   = 'sp-4-lun'
+    param['tag_local_lun_name_1']       = 'sp4lun_1'
+    param['tag_disk_policy_name_1']     = disk_policy_name
+    param['tag_expand_to_avail_1']      = 'no'
+    param['tag_order_1']  = '1'
+    param['tag_size_1']   = '50'
+    param['tag_local_lun_name_2']       = 'sp4lun_2'
+    param['tag_disk_policy_name_2']     = disk_policy_name
+    param['tag_order_2']  = '2'
+    param['tag_size_2']   = '200'
+    param['tag_local_lun_name_3']       = 'sp4lun_3'
+    param['tag_disk_policy_name_3']     = disk_policy_name
+    param['tag_order_3']  = '3'
+    param['tag_size_3']   = '6'
+    param['tag_local_lun_name_4']       = 'sp4lun_4'
+    param['tag_disk_policy_name_4']     = disk_policy_name
+    param['tag_order_4']  = '4'
+    param['tag_size_4']   = '8'
+    param['cmd_text_file_name'] = 'storage_profile_4_lun.txt'
     run(ucsm_ssh, param)
     
 
@@ -311,29 +341,19 @@ def create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt):
     
     param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
     
-    current_eth_cnt = 0
-    data_vlan_start = int(test_bed) * 100 + 20 + 3
-    data_vlan_end   = data_vlan_start + eth_cnt
-    eth_vlan_list = range(data_vlan_start, data_vlan_end)
-    eth_vlan_list.insert(0, VLAN_ISCSI)
-    eth_vlan_list.insert(0, VLAN_MEDUSA)
-    eth_vlan_list.insert(0, VLAN_PXE)
-    for eth_vlan in eth_vlan_list: 
-        eth_id = str(current_eth_cnt).zfill(2) 
+    for eth_index in range(1, eth_cnt+1): 
+        eth_id = str(eth_index).zfill(2) 
         param['tag_mac_address'] = get_mac_address(test_bed, chassis, cartridge, server, eth_id)
-        param["tag_eth_name"] = ''.join([param["eth_pxe_name_prefix"], str(eth_vlan)])
-        param["tag_eth_vlan"] = 'vlan' + str(eth_vlan)
-        param['tag_eth_order'] = str(int(current_eth_cnt) + 1)
-        if current_eth_cnt % 2 == 0:
+        param["tag_eth_name"] = ''.join([param["eth_pxe_name_prefix"], eth_id])
+        param["tag_eth_vlan"] = 'default'
+        param['tag_eth_order'] = eth_id
+        if eth_index % 2 == 1:
             param["tag_eth_fabric"] = 'a'
         else:
             param["tag_eth_fabric"] = 'b'
         #pprint.pprint(param)
         file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_eth_vlan.txt"   
         Util.run_text_step(ucsm_ssh, file_text_step, param)
-        current_eth_cnt += 1
-        if current_eth_cnt >= eth_cnt: 
-            break
     
     
 def associate_service_profile(ucsm_ssh, param):
@@ -474,6 +494,63 @@ def get_all_host_ip():
 def create_mac_pool(ucsm_ssh, param):
     file_text_step = Define.PATH_SNIC_TEXT_UCSM + "mac_pool.txt"   
     Util.run_text_step(ucsm_ssh, file_text_step, param)
+    
+    
+def create_ipmi_policy(ucsm_ssh, param):
+    file_json_step = Define.PATH_SNIC_JSON_UCSM + "ipmi_policy.json"   
+    Util.run_step_list(ucsm_ssh, file_json_step)
+    
+
+def vnic_add_vlan_in_service_profile(ucsm_ssh, param):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    
+    host_suffix = int(''.join([chassis, cartridge, server]))
+    eth_cnt = 16 if host_suffix in HOST_NEWARD_LIST else 8
+    is_hyperv = True if host_suffix in HOST_HYPERV_LIST else False
+    
+    ucsm_ssh.send_expect_prompt('scope org')
+    ucsm_ssh.send_expect_prompt('scope service-profile ' + param['tag_service_profile_name'])
+    
+    if is_hyperv:
+        # mgmt
+        for eth_id in range(2, eth_cnt/2+1):
+            vnic_add_vlan_for_hyperv(ucsm_ssh, True, eth_id)
+        # vm
+        for eth_id in range(eth_cnt/2+1, eth_cnt+1):
+            vnic_add_vlan_for_hyperv(ucsm_ssh, False, eth_id)
+    else:
+        vnic_add_vlan_for_standalone(ucsm_ssh, eth_cnt)
+    ucsm_ssh.send_expect_prompt("commit-buffer")
+        
+        
+def vnic_add_vlan_for_hyperv(ucsm_ssh, is_mgmt, eth_id):
+    eth_name = 'eth' + str(eth_id).zfill(2)
+    ucsm_ssh.send_expect_prompt('scope vnic ' + eth_name)
+    vlan_list = Define.VLAN_MGMT if is_mgmt else Define.VLAN_VM
+    for vlan in vlan_list:
+        ucsm_ssh.send_expect_prompt('enter eth-if vlan' + str(vlan))
+        ucsm_ssh.send_expect_prompt('exit')
+    ucsm_ssh.send_expect_prompt('exit')
+        
+        
+def vnic_add_vlan_for_standalone(ucsm_ssh, eth_cnt):
+    vlan_list = Define.VLAN_STANDALONE
+    len_diff = eth_cnt - len(vlan_list)
+    vlan_list_padded = [ 100 + x for x in range(1, len_diff+1)]
+    vlan_list = vlan_list + vlan_list_padded  
+    for eth_id in range(1, eth_cnt+1):
+        eth_name = 'eth' + str(eth_id).zfill(2)
+        ucsm_ssh.send_expect_prompt('scope vnic ' + eth_name)
+        vlan = vlan_list.pop(0)
+        ucsm_ssh.send_expect_prompt('enter eth-if vlan' + str(vlan))
+        ucsm_ssh.send_expect_prompt('set default-net yes')
+        ucsm_ssh.send_expect_prompt('exit')
+        ucsm_ssh.send_expect_prompt('delete eth-if default')
+        ucsm_ssh.send_expect_prompt('exit')
     
     
         

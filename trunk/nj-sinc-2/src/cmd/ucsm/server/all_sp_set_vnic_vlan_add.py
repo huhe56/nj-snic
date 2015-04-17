@@ -11,11 +11,6 @@ from cmd.ucsm.server import sp_define
 
 
 
-ETH_IF_VLAN_NUMBER_LIST = [x for x in range(323, 328)]
-ETH_IF_VLAN_NUMBER_LIST = []
-ETH_IF_VLAN_NUMBER_LIST.append(2000)
-ETH_IF_VLAN_NUMBER_LIST.append(114)
-
 if __name__ == '__main__':
     
     param  = sp_define.param
@@ -32,7 +27,7 @@ if __name__ == '__main__':
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                     
-                sp_define.set_vnic_no_vlan_in_service_profile(ucsm_ssh, param, ETH_IF_VLAN_NUMBER_LIST)
+                sp_define.vnic_add_vlan_in_service_profile(ucsm_ssh, param)
                 
     ucsm.exit()
     
