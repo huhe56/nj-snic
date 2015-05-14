@@ -53,7 +53,7 @@ config_dict = {
             },
             3: {
                 1: {
-                       'storage_profile': SP_NAME_2,
+                       'storage_profile': SP_NAME_1,
                        'boot_policy': BOOT_POLICY_1,
                        'eth_cnt': ETH_CNT
                 },

@@ -41,7 +41,8 @@ if __name__ == '__main__':
                 eth_cnt = server['eth_cnt']
                 if eth_cnt > 0:
                     sp_define.create_eth_if_in_service_profile(ucsm_ssh, param, eth_cnt) 
-                    
+                
+                '''
                 if 'lun' in server.keys():
                     lun = server['lun']
                     sp_define.create_lun_in_service_profile(ucsm_ssh, param, lun)
@@ -61,6 +62,7 @@ if __name__ == '__main__':
                 
                 #sp_define.associate_service_profile(ucsm_ssh, param)
                 #time.sleep(300)
+                '''
                 
     ucsm.exit()
     

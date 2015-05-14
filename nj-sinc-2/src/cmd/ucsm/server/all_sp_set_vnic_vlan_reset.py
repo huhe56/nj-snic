@@ -18,7 +18,8 @@ ETH_IF_VLAN_NUMBER_LIST = list(set(ETH_IF_VLAN_NUMBER_LIST))
 ''' not working now '''
 
 if __name__ == '__main__':
-    
+    print 'not working .... exit'
+    '''
     param  = sp_define.param
         
     ucsm = UCSM(Define.UCSM_HOSTNAME);
@@ -36,7 +37,7 @@ if __name__ == '__main__':
                 sp_define.set_vnic_no_vlan_in_service_profile(ucsm_ssh, param, ETH_IF_VLAN_NUMBER_LIST)
                 
     ucsm.exit()
-    
+    '''
 
     
     

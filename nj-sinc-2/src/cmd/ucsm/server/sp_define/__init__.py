@@ -6,12 +6,14 @@ from lib.util import Util
 
 from cmd.ucsm.server.sp_define_config_7 import config_dict
 
-HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 151, 171]
+HOST_SUFFIXE_ALL_LIST = [111, 112, 121, 122, 131, 141, 151, 171]
 
-HOST_SUFFIXE_LIST = [171]
+HOST_SUFFIXE_LIST = [111, 112, 121, 122, 131, 141]
 
 
-
+HOST_HYPERV_LIST = [121, 122, 131, 141, 151, 171]
+HOST_NEWARD_LIST = [151, 171]
+HOST_ISCSI_BOOT_LIST  = [141, 151]
 
 HOST_LIST = ['20.200.10.' + str(host) for host in HOST_SUFFIXE_LIST]
 
@@ -29,8 +31,7 @@ VLAN_PXE    = 20
 VLAN_ISCSI  = 114
 VLAN_MEDUSA = 2000
 
-HOST_HYPERV_LIST = [121, 122, 171]
-HOST_NEWARD_LIST = [151, 171]
+
 
 PATTERN_EXCLUSIVE_IN_MEDUSA = '| grep -v label | grep -v "v Retry count on error" | grep -v "O loop error event handlers:" | grep -v "exit code 0" | grep -v "O Override base offset"'
 PATTERN_EGREP = 'error|fail|halt|panic'
@@ -298,6 +299,20 @@ def set_vnic_mtu_in_service_profile(ucsm_ssh, param, mtu_dict):
         Util.run_text_step(ucsm_ssh, file_text_step, param)
     
     
+def set_vnic_adapter_policy_in_service_profile(ucsm_ssh, param, adapter_policy_dict):
+    test_bed = str(param['test_bed_id'])
+    chassis = str(param['chassis_id'])
+    cartridge = str(param['cartridge_id'])
+    server = str(param['server_id'])
+    param['tag_service_profile_name'] = get_service_profile_name(chassis, cartridge, server)
+    
+    for eth_name, adapter_policy in adapter_policy_dict.iteritems():
+        param['tag_eth_name'] = eth_name
+        param['tag_adapter_policy'] = adapter_policy
+        file_text_step = Define.PATH_SNIC_TEXT_UCSM + "service_profile_vnic_adapter_policy.txt"   
+        Util.run_text_step(ucsm_ssh, file_text_step, param)
+        
+    
 def set_vnic_no_vlan_in_service_profile(ucsm_ssh, param, vlan_number_list):
     test_bed = str(param['test_bed_id'])
     chassis = str(param['chassis_id'])
@@ -517,20 +532,27 @@ def vnic_add_vlan_in_service_profile(ucsm_ssh, param):
     
     if is_hyperv:
         # mgmt
+        vnic_add_vlan_for_one_vnic(ucsm_ssh, 1, 20)
         for eth_id in range(2, eth_cnt/2+1):
-            vnic_add_vlan_for_hyperv(ucsm_ssh, True, eth_id)
+            if (host_suffix in HOST_ISCSI_BOOT_LIST and eth_id == 3):
+                vnic_add_vlan_for_one_vnic(ucsm_ssh, eth_id, 114)
+            else:
+                vnic_add_vlan_for_hyperv(ucsm_ssh, True, eth_id)
         # vm
         for eth_id in range(eth_cnt/2+1, eth_cnt+1):
             vnic_add_vlan_for_hyperv(ucsm_ssh, False, eth_id)
     else:
         vnic_add_vlan_for_standalone(ucsm_ssh, eth_cnt)
+        
     ucsm_ssh.send_expect_prompt("commit-buffer")
         
         
 def vnic_add_vlan_for_hyperv(ucsm_ssh, is_mgmt, eth_id):
     eth_name = 'eth' + str(eth_id).zfill(2)
     ucsm_ssh.send_expect_prompt('scope vnic ' + eth_name)
-    vlan_list = Define.VLAN_MGMT if is_mgmt else Define.VLAN_VM
+    mgmt_vlan_list = Define.VLAN_MGMT[:]
+    mgmt_vlan_list.remove(20)
+    vlan_list = mgmt_vlan_list if is_mgmt else Define.VLAN_VM
     for vlan in vlan_list:
         ucsm_ssh.send_expect_prompt('enter eth-if vlan' + str(vlan))
         ucsm_ssh.send_expect_prompt('exit')
@@ -543,14 +565,26 @@ def vnic_add_vlan_for_standalone(ucsm_ssh, eth_cnt):
     vlan_list_padded = [ 100 + x for x in range(1, len_diff+1)]
     vlan_list = vlan_list + vlan_list_padded  
     for eth_id in range(1, eth_cnt+1):
-        eth_name = 'eth' + str(eth_id).zfill(2)
-        ucsm_ssh.send_expect_prompt('scope vnic ' + eth_name)
-        vlan = vlan_list.pop(0)
-        ucsm_ssh.send_expect_prompt('enter eth-if vlan' + str(vlan))
-        ucsm_ssh.send_expect_prompt('set default-net yes')
-        ucsm_ssh.send_expect_prompt('exit')
-        ucsm_ssh.send_expect_prompt('delete eth-if default')
-        ucsm_ssh.send_expect_prompt('exit')
+        if eth_id == 2: 
+            vlan = vlan_list.pop(0)
+        else:
+            eth_name = 'eth' + str(eth_id).zfill(2)
+            ucsm_ssh.send_expect_prompt('scope vnic ' + eth_name)
+            vlan = vlan_list.pop(0)
+            ucsm_ssh.send_expect_prompt('enter eth-if vlan' + str(vlan))
+            ucsm_ssh.send_expect_prompt('set default-net yes')
+            ucsm_ssh.send_expect_prompt('exit')
+            ucsm_ssh.send_expect_prompt('delete eth-if default')
+            ucsm_ssh.send_expect_prompt('exit')
     
+    
+def vnic_add_vlan_for_one_vnic(ucsm_ssh, eth_id, vlan):
+    eth_name = 'eth' + str(eth_id).zfill(2)
+    ucsm_ssh.send_expect_prompt('scope vnic ' + eth_name)
+    ucsm_ssh.send_expect_prompt('enter eth-if vlan' + str(vlan))
+    ucsm_ssh.send_expect_prompt('set default-net yes')
+    ucsm_ssh.send_expect_prompt('exit')
+    ucsm_ssh.send_expect_prompt('delete eth-if default')
+    ucsm_ssh.send_expect_prompt('exit')
     
         
