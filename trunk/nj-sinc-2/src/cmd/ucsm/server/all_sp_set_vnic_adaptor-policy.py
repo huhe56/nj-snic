@@ -10,26 +10,14 @@ from lib.ucsm import UCSM
 from cmd.ucsm.server import sp_define
 
 
-MTU9K = 9000
-MTU1K = 1500
-MTU = MTU9K
-MTU_DICT = {
-       'eth20':     MTU,
-       'eth2000':   MTU,
-       'eth114':    MTU,
-       'eth323':    MTU,
-       'eth324':    MTU,
-       'eth325':    MTU,
-       'eth326':    MTU,
-       'eth327':    MTU
-       }
+
 
 if __name__ == '__main__':
     
     param  = sp_define.param
         
-    MTU_DICT = { "eth" + str(x).zfill(2): MTU for x in range(2, 17) }
-    print MTU_DICT
+    adapter_policy_dict = { "eth" + str(x).zfill(2): "Windows" for x in range(1, 9) }
+    print adapter_policy_dict
     
     
     ucsm = UCSM(Define.UCSM_HOSTNAME);
@@ -44,7 +32,7 @@ if __name__ == '__main__':
                 param['cartridge_id']   = cartridge_id
                 param['server_id']      = server_id
                     
-                sp_define.set_vnic_mtu_in_service_profile(ucsm_ssh, param, MTU_DICT)
+                sp_define.set_vnic_adapter_policy_in_service_profile(ucsm_ssh, param, adapter_policy_dict)
     
     ucsm.exit()
     

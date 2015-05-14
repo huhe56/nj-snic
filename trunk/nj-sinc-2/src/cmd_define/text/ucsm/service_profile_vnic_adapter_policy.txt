@@ -1,0 +1,9 @@
+top
+   scope org
+     enter service-profile tag_service_profile_name
+         enter vnic tag_eth_name 
+             set adapter-policy tag_adapter_policy
+         exit
+     exit
+  exit
+  commit-buffer
